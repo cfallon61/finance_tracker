@@ -1,0 +1,37 @@
+Transaction Register:
+
+Description:
+A personal finance tracker.
+The user would login to see their transaction history separated into 
+months for the current year and all their info is saved on a database. 
+We could display every month and add an option to add to each individual 
+month’s table so the user can easily see their information.
+
+Technology/Services:
+mySQL
+HTML5
+Java Script
+Node.js - Server
+
+
+Functional Specs:
+Insert and remove contents from table
+Client sends creds to server, server auth, return client page
+Client page can display by month / year
+Shows all transactions for the current time period specified, running 
+total at the top of the page
+User has db entry 
+Each user has their own table 
+Entries - date of transaction , type (credit, debit), pay or receive(may 
+not be necessary), amount, total budget for the month, what the 
+transaction was used for
+Define Debit and Credit Transactions
+Add up debit and credit transactions for each month to display how much 
+you earned 
+Print webpage contents
+Budget limit (over / under budget)
+Monthly budget reports
+Login page -> personal ledger
+
+
+
