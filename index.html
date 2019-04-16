@@ -4,10 +4,13 @@
     <head>
         <title>Pre-Build</title>
 
+        <link rel="shortcut icon" type="image/png" href="images/png/favicon.png">
+
         <link rel="stylesheet" type="text/css" href="css-sheets/columns.css">
         <link rel="stylesheet" type="text/css" href="css-sheets/table.css">
 
-        <link rel="shortcut icon" type="image/png" href="images/png/favicon.png">
+        <script src="javascript/tableManipulator.js"></script>
+        <script src="javascript/InputParser.js"></script>
     </head>
 
     <body>
@@ -38,12 +41,16 @@
 
             <div class="field2">
                 <label for="dayField">Day:</label>
-                <input type="text" name="Day" id="dayField">
+                <input type="number" name="Day" id="dayField">
             </div>
 
             <div class="field3">
                 <label for="amountField">Amount:</label>
-                <input type="text" name="Amount" id="amountField">
+                <input type="number" name="Amount" id="amountField">
+            </div>
+
+            <div class="confirm">
+                <button type="button" onclick="insertTableRow()">Insert</button>
             </div>
 
         </div>
