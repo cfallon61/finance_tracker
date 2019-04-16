@@ -1,0 +1,24 @@
+
+THIS IS A TEST PAGE
+<h1>Sign in</h1>
+<div div style="text-align: center">
+    <div class="form-group">
+        <input type="text" class="form-control" id="userEmail" name="loginId" placeholder="Email address" required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="userPassword" name="password" placeholder="Password" required>
+    </div>
+    <br><br>
+    <div class="row">
+        <button id="login" class="button" (click)="onSubmit()">Login</button>
+    </div>
+</div>
+
+<script>
+    function onSubmit()
+    {
+        document.getElementById('login').style.color = "red";
+        console.log("button clicked");
+    }
+
+</script>

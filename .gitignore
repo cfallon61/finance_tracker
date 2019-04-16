@@ -2,4 +2,5 @@
 !server.js
 !README
 !.gitignore
-
+!root/*
+!root
