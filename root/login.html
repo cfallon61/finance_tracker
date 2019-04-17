@@ -10,15 +10,21 @@ THIS IS A TEST PAGE
     </div>
     <br><br>
     <div class="row">
-        <button id="login" class="button" (click)="onSubmit()">Login</button>
+        <button id="login" class="button" onclick="onSubmit()">Login</button>
     </div>
 </div>
 
 <script>
     function onSubmit()
     {
-        document.getElementById('login').style.color = "red";
-        console.log("button clicked");
-    }
+        pass = document.getElementByName('password').value;
+        email = document.getElementByName('loginId').value;
+        document.write(email + " " + pass);
+        document.getElementById('login').value = email;
+        user = "test";
 
+        var request = xhttp.open("GET", "/", true);
+        request.setRequestHeader("Content-type", "text/html");
+        request.send();
+    }
 </script>

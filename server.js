@@ -39,20 +39,42 @@ app.listen(8080, function(err)
 });
 
 // Get root file path
-app.get('/', function(request, result)
+app.get('/', function(request, response)
 {
     console.log("GET / " + request.headers + "\n");
-    result.sendFile(path.join(root, "login.html"));
+    response.sendFile(path.join(root, 'index.html'));
 });
 
-function login()
+app.get('/login', function(request, response)
 {
+    console.log("GET /login " + request.headers);
+    response.sendFile(path.join(root, "login.html"));
+});
 
-}
-
-function onSubmit()
+// the user's dashboard
+app.post('/dashboard/:uid', is_logged_in, function(request, response)
 {
-    document.getElementById('login');
-    console.log("button clicked");
+    var uid = request.session.user;
+    var query_string = "SELECT * FROM " + uid;
+    db.query(query_string, function(err, response)
+    {
+        if (err) throw err;
+        console.log(response);
+    });
+});
+
+
+// check if the user is logged into an account
+function is_logged_in(request, response, next)
+{
+    var loggedin = request.session.user;
+    // if the user is not logged in redirect them to the login page
+    if (!loggedin)
+    {
+        request.session.reset();
+        response.redirect("/login");
+    }
+    // do the next function
+    else next();
 }
 
