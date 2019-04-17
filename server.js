@@ -67,14 +67,16 @@ app.post('/dashboard/:uid', is_logged_in, function(request, response)
 // check if the user is logged into an account
 function is_logged_in(request, response, next)
 {
-    var loggedin = request.session.user;
-    // if the user is not logged in redirect them to the login page
-    if (!loggedin)
-    {
-        request.session.reset();
-        response.redirect("/login");
-    }
-    // do the next function
-    else next();
+    console.log("verifying login");
+    // var loggedin = request.session.user;
+    // // if the user is not logged in redirect them to the login page
+    // if (!loggedin)
+    // {
+    //     request.session.reset();
+    //     response.redirect("/login");
+    // }
+    // // do the next function
+    // else next();
+    next();
 }
 

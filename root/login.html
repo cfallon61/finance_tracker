@@ -17,14 +17,17 @@ THIS IS A TEST PAGE
 <script>
     function onSubmit()
     {
-        pass = document.getElementByName('password').value;
-        email = document.getElementByName('loginId').value;
-        document.write(email + " " + pass);
-        document.getElementById('login').value = email;
+        pass = document.getElementById('userPassword').value;
+        email = document.getElementById('userEmail').value;
+        console.log(email + " | " + pass);
         user = "test";
 
-        var request = xhttp.open("GET", "/", true);
+        var request = new XMLHttpRequest();
+        request.open("POST", "/dashboard/:"+user, true);
         request.setRequestHeader("Content-type", "text/html");
         request.send();
+
+        console.log(request);
+        console.log("login");
     }
 </script>
