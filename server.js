@@ -8,7 +8,7 @@ let sessions = require("client-sessions");
 // init settings
 const init = require("./config.json");
 
-var app = express();
+const app = express();
 
 // root directory
 const root = path.join(__dirname, "./root");
@@ -24,7 +24,7 @@ db.connect((err) => {
     {
         if (err) throw err;
         console.log(result);
-    })
+    });
 });
 
 // set the application to use the cookies specified in config.json
