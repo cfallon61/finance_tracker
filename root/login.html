@@ -23,9 +23,12 @@ THIS IS A TEST PAGE
         user = "test";
 
         var request = new XMLHttpRequest();
-        request.open("POST", "/dashboard/:"+user, true);
+        request.open("POST", "/login", true);
         request.setRequestHeader("Content-type", "text/html");
-        request.send();
+        request.setRequestHeader("withCredentials", true);
+        request.setRequestHeader("username", email);
+        request.setRequestHeader("password", pass);
+        request.send(email);
 
         console.log(request);
         console.log("login");

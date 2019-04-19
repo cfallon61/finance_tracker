@@ -55,29 +55,44 @@ app.get('/', function(request, response)
 app.post('/login', not_logged_in, (request, response) =>
 {
     console.log("POST /login " + request.headers);
-    var username = {};//placeholder
-    var password = {}; //placeholder
-    var query_string = "SELECT * FROM USERS WHERE USERNAME='" + username +"'";
+    var username = request.finance_tracker.username;//placeholder
+    var password = request.finance_tracker.password; //placeholder
+    var query_string = "SELECT * FROM USERS WHERE USERNAME=?";
     var query_res;
+
+    if (!username || !password)
+    {
+        response.send("Invalid username or password");
+    }
+    console.log("Username: " + username + " | Password: " + password);
     // query db for user info
-    db.query(query_string, (err, res)=>
+    db.query(query_string, username,(err, res)=>
     {
         if (err) console.log(err);
         console.log(res);
         query_res = res;
     });
+    if (!query_res)
+    {
+        console.log("User doesn't exist");
+        response.sendStatus(401);
+    }
+    else
+    {
+        res.redirect('/dashboard');
+    }
 });
 
 // user has submitted the login information
 app.post('/signup', not_logged_in, (request, response) =>
 {
     console.log("POST /login " + request.headers);
-    var username = {};//placeholder
-    var password = {}; //placeholder
-    var query_string = "SELECT * FROM USERS WHERE USERNAME='" + username +"'";
+    var username = request.finance_tracker.username;//placeholder
+    var password = request.finance_tracker.username; //placeholder
+    var query_string = "SELECT * FROM USERS WHERE USERNAME=?";
     var query_res;
     // query db for user info
-    db.query(query_string, (err, res)=>
+    db.query(query_string, username,(err, res)=>
     {
         if (err) {
             console.log("Error");
@@ -94,8 +109,8 @@ app.post('/signup', not_logged_in, (request, response) =>
     // user does not exist, so make a new table for them
     else
     {
-        query_string = "CREATE TABLE " + username + " " + create_user_str;
-        db.query(query_string, (err, res) =>
+        query_string = "CREATE TABLE ? ?";
+        db.query(query_string, [username, create_user_str], (err, res) =>
         {
             if (err) console.log(err);
             console.log(res);
@@ -107,8 +122,8 @@ app.post('/signup', not_logged_in, (request, response) =>
 app.get('/dashboard', is_logged_in, (request, response) =>
 {
     var username = request.finance_tracker.username;
-    var query_string = "SELECT * FROM " + username;
-    db.query(query_string, function(err, response)
+    var query_string = "SELECT * FROM ?";
+    db.query(query_string, username,function(err, response)
     {
         if (err) throw err;
         console.log(response);
