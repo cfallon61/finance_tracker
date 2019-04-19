@@ -20,7 +20,7 @@ function insertTableRow() {
     dateCell.innerHTML = convertMonthToNumber(tableMonth) + "/" + document.getElementById("dayField").value;
     amountCell.innerHTML = "$" + document.getElementById("amountField").value;
     typeCell.innerHTML = document.getElementById("typeDropdown").value;
-    removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\">Delete</button>";
+    removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
 }
 
 function deleteTableRow(x) {
