@@ -1,0 +1,16 @@
+#Col1, #Col2, .field1, .monthField, .field2, .field3, .field4{
+    float: left;
+}
+
+#Col1, #Col2 {
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+input {
+    margin-right: 10px;
+}
+
+select {
+    margin-right: 10px;
+}
