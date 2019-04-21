@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="" />
+    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="Merge branch 'server'&#10;&#10;# Conflicts:&#10;#&#9;server.js">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/react-dom/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/root/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/root/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/root/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -16,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="96" column="36" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+            <state relative-caret-position="2208">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
@@ -34,6 +41,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/root/index.html">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/root/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="651">
+              <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -76,8 +92,8 @@
         <option value="$PROJECT_DIR$/notes" />
         <option value="$PROJECT_DIR$/root/signup.html" />
         <option value="$PROJECT_DIR$/config.json" />
-        <option value="$PROJECT_DIR$/root/login.html" />
         <option value="$PROJECT_DIR$/root/index.html" />
+        <option value="$PROJECT_DIR$/root/login.html" />
         <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
@@ -157,7 +173,7 @@
       <updated>1555364392440</updated>
       <workItem from="1555364396845" duration="384000" />
       <workItem from="1555364804690" duration="61000" />
-      <workItem from="1555364934114" duration="35254000" />
+      <workItem from="1555364934114" duration="35535000" />
     </task>
     <task id="LOCAL-00001" summary="fixing after merge">
       <created>1555865538755</created>
@@ -170,7 +186,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263000" />
+    <option name="totallyTimeSpent" value="544000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1928" y="8" width="1904" height="1064" extended-state="4" />
@@ -208,9 +224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -218,10 +231,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/root/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="55" column="9" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="96" column="36" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+        <state relative-caret-position="2208">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
         </state>
       </provider>
     </entry>

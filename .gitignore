@@ -1,0 +1,8 @@
+*
+!server.js
+!README
+!.gitignore
+!root/*
+!root
+!node_modules
+!node_modules/*
