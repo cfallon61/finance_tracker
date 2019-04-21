@@ -1,0 +1,51 @@
+SQL Commands
+SELECT - extracts data from a database
+  FROM table WHERE field=entry
+  AND or OR can be used
+  DISTINCT - gets distinct values
+
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+SHOW TABLES - shows all current tables in db
+DESCRIBE table - shows all the fields of a table;
+
+
+scrap
+=====================================================================
+connection.changeUser({database : 'my_database'}, function(err) {
+  if (err) throw err;
+});
+
+var values = ['Steve', '46'];
+db.query("INSERT INTO test (name, age) VALUES ('Steve', '46')", function(err, result)
+{
+    console.log("inserting test info into db");
+    if (err) throw err;
+    console.log(result);
+});
+
+
+=====================================================================
+
+db structure
+========================================
+table of users and hashed passwords
+each person has a table of entries
+
+cred_table fields = ('Email', 'Password')
+user_table fields = (Date DATE, Amount , Type VARCHAR, Description VARCHAR(255))
+
+
+sources
+password encryption - https://www.abeautifulsite.net/hashing-passwords-with-nodejs-and-bcrypt
+storing info in db - https://www.vertabelo.com/blog/technical-articles/how-to-store-authentication-data-in-a-database-part-1
+client sessions - https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions

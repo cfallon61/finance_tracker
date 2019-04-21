@@ -1,0 +1,11 @@
+{
+  "name": "finance_tracker",
+  "version": "1.0.0",
+  "dependencies": {
+    "bcrypt": "latest",
+    "client-sessions": "latest",
+    "express": "latest",
+    "express-session": "^1.16.1",
+    "mysql": "latest"
+  }
+}
