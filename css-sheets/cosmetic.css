@@ -1,0 +1,8 @@
+body {
+    background-color: mediumpurple;
+    /*background-image: linear-gradient(65deg, darkred, rebeccapurple);*/
+}
+
+.TableBody {
+    text-align: center;
+}
