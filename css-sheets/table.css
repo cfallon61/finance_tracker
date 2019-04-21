@@ -1,0 +1,10 @@
+table, th, td {
+    border: 1px solid black;
+    width: 700px;
+    margin-bottom: 20px;
+}
+
+caption {
+    border: 1px solid black;
+    font-weight: bold;
+}
