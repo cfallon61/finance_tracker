@@ -2,7 +2,7 @@ let mysql  = require("mysql");
 let bcrypt = require("bcrypt");
 let express = require("express");
 let path    = require("path");
-let sessions = require("client-sessions");
+let sessions = require("express-session");
 
 // config.json holds the credentials for the database and other important
 // init settings
@@ -46,25 +46,30 @@ app.listen(8080, function(err)
 // Get root file path
 app.get('/', function(request, response)
 {
-    console.log("GET / " + request.headers + "\n");
-    console.log(request.finance_tracker);
+    console.log("GET / ");
+    console.log(request.headers);
+    console.log(request.session);
     response.sendFile(path.join(root, 'index.html'));
 });
 
 // user has submitted the login information
 app.post('/login', not_logged_in, (request, response) =>
 {
-    console.log("POST /login " + request.headers);
-    var username = request.finance_tracker.username;//placeholder
-    var password = request.finance_tracker.password; //placeholder
+    console.log("\n\nPOST /login ");
+    // console.log(request.headers);
+    console.log(request.session);
+
+    var username = request.session.username;
+    var password = request.session.password;
     var query_string = "SELECT * FROM USERS WHERE USERNAME=?";
     var query_res;
 
+    console.log("Username: " + username + " | Password: " + password);
     if (!username || !password)
     {
-        response.send("Invalid username or password");
+        response.sendStatus(401);
+        return;
     }
-    console.log("Username: " + username + " | Password: " + password);
     // query db for user info
     db.query(query_string, username,(err, res)=>
     {
@@ -72,6 +77,7 @@ app.post('/login', not_logged_in, (request, response) =>
         console.log(res);
         query_res = res;
     });
+    // if the response is empty, user doesn't exist
     if (!query_res)
     {
         console.log("User doesn't exist");
@@ -86,9 +92,10 @@ app.post('/login', not_logged_in, (request, response) =>
 // user has submitted the login information
 app.post('/signup', not_logged_in, (request, response) =>
 {
-    console.log("POST /login " + request.headers);
-    var username = request.finance_tracker.username;//placeholder
-    var password = request.finance_tracker.username; //placeholder
+    console.log("\n\nPOST /login " + request.headers);
+    console.log("Session: " + request.session);
+    var username = request.username;//placeholder
+    var password = request.password; //placeholder
     var query_string = "SELECT * FROM USERS WHERE USERNAME=?";
     var query_res;
     // query db for user info
@@ -121,7 +128,7 @@ app.post('/signup', not_logged_in, (request, response) =>
 // the user's dashboard
 app.get('/dashboard', is_logged_in, (request, response) =>
 {
-    var username = request.finance_tracker.username;
+    var username = request.session.username;
     var query_string = "SELECT * FROM ?";
     db.query(query_string, username,function(err, response)
     {
@@ -135,12 +142,11 @@ app.get('/dashboard', is_logged_in, (request, response) =>
 function is_logged_in(request, response, next)
 {
     console.log("verifying login");
-    var username = request.finance_tracker.username;
-    // console.log(loggedin);
+    var user = request.session.user;
     // if the user is not logged in redirect them to the login page
-    if (!username)
+    if (!user)
     {
-        request.finance_tracker.reset();
+        request.session.reset();
         response.redirect("/login");
     }
     // do the next function
@@ -150,8 +156,7 @@ function is_logged_in(request, response, next)
 function not_logged_in(req, res, next)
 {
     console.log('verifying user is not logged in');
-    // console.log(req.finance_tracker.user);
-    if (!req.finance_tracker.username)
+    if (!req.session.user)
     {
         next();
     }

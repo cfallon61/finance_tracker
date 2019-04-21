@@ -19,16 +19,25 @@ THIS IS A TEST PAGE
     {
         pass = document.getElementById('userPassword').value;
         email = document.getElementById('userEmail').value;
-        console.log(email + " | " + pass);
-        user = "test";
 
-        var request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.open("POST", "/login", true);
-        request.setRequestHeader("Content-type", "text/html");
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         request.setRequestHeader("withCredentials", true);
         request.setRequestHeader("username", email);
         request.setRequestHeader("password", pass);
-        request.send(email);
+
+        request.onreadystatechange = () =>
+        {
+          if (request.readyState === 4)
+          {
+              if (request.status === 401)
+              {
+                  alert("Invalid username or password");
+              }
+          }
+        };
+        request.send();
 
         console.log(request);
         console.log("login");
