@@ -1,12 +1,10 @@
-
 body {
     margin: 0;
     padding: 0;
     background-size: cover;
     background: url(../images/jpg/login-background2.jpg) no-repeat center center;
-    font-family: Consolas;
+    font-family: monospace;
 }
-
 
 h1 {
     margin: 0;
@@ -14,7 +12,6 @@ h1 {
     text-align: center;
     font-size: 20px;
 }
-
 
 .loginBox {
     width: 320px;

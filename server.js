@@ -1,169 +1,264 @@
-let mysql  = require("mysql");
+let mysql = require("mysql");
 let bcrypt = require("bcrypt");
 let express = require("express");
-let path    = require("path");
+let path = require("path");
 let sessions = require("express-session");
+let cookieParser = require('cookie-parser');
 
 // config.json holds the credentials for the database and other important
 // init settings
 const init = require("./config.json");
-const create_user_str = "(ID AUTO_INCREMENT PRIMARY KEY, " +
-    "TRANS_DATE DATE, " +
-    "AMOUNT FLOAT, " +
-    "TYPE VARCHAR(15), " +      // deposit or deduction
-    "DESCRIPTION VARCHAR(255)"; // what type of transaction it was. Client will have drop down
-
 const app = express();
 
 // root directory
 const root = path.join(__dirname, "./root");
 
 const db = mysql.createConnection(init.db);
-
+// const db = mysql.createPool(init.db);
 // connect to the database
-db.connect((err) => {
+db.connect((err) =>
+{
+  if (err) throw err;
+  console.log("Connected to database");
+  // just to verify that it connected to the DB, print to console
+  db.query("SHOW TABLES", function (err, result)
+  {
     if (err) throw err;
-    console.log("Connected to database");
-    // just to verify that it connected to the DB, print to console
-    db.query("SHOW TABLES", function(err, result)
-    {
-        if (err) throw err;
-        console.log(result);
-    });
+    console.log(result);
+  });
 });
 
 // set the application to use the cookies specified in config.json
+app.use(cookieParser());
 app.use(sessions(init.cookies));
 app.use(express.static(root));
 
-// start the server listening on port 8080
-app.listen(8080, function(err)
+app.use((req, res, next) =>
 {
-    if (err) throw err;
-    console.log("Server started");
+  if (req.cookies.tracker && !req.session.uid)
+    res.clearCookie(init.cookies.key);
+  next();
+});
+
+// start the server listening on port 8080
+app.listen(8080, function (err)
+{
+  if (err) throw err;
+  console.log("Server started");
 });
 
 // Get root file path
-app.get('/', function(request, response)
+app.get('/', function (request, response)
 {
-    console.log("GET / ");
-    console.log(request.headers);
-    console.log(request.session);
-    response.sendFile(path.join(root, 'index.html'));
+  console.log("GET / ");
+  console.log(request.headers);
+  console.log(request.session);
+  response.sendFile(path.join(root, 'index.html'));
+});
+
+// send html file for login page
+app.get("/login", is_logged_in, (req, res) =>
+{
+  console.log("\n\nGET /login");
+  console.log(req.cookies);
+  console.log(req.session);
+  res.sendFile(path.join(root,"login.html"));
 });
 
 // user has submitted the login information
-app.post('/login', not_logged_in, (request, response) =>
+app.post('/login', is_logged_in, (request, response) =>
 {
-    console.log("\n\nPOST /login ");
-    // console.log(request.headers);
-    console.log(request.session);
+  console.log(request.session);
 
-    var username = request.session.username;
-    var password = request.session.password;
-    var query_string = "SELECT * FROM USERS WHERE USERNAME=?";
-    var query_res;
+  console.log("\n\nPOST /login ");
 
-    console.log("Username: " + username + " | Password: " + password);
-    if (!username || !password)
+  var username = request.headers.email;
+  var password = request.headers.password;
+  var query_string = "SELECT * FROM USERS WHERE EMAIL=?";
+
+  console.log("\n\nUsername: " + username + " | Password: " + password);
+  // empty username or password
+  if (!username || !password)
+  {
+    response.sendStatus(401);
+    return;
+  }
+  // query db for user info
+  db.query(query_string, username, (err, res) =>
+  {
+    if (err)
     {
-        response.sendStatus(401);
-        return;
+     console.log(err);
+     console.log(err.code);
     }
-    // query db for user info
-    db.query(query_string, username,(err, res)=>
+    console.log(res);
+
+    // if the response is not empty
+    if (res !== undefined && res.length > 0)
     {
-        if (err) console.log(err);
-        console.log(res);
-        query_res = res;
-    });
-    // if the response is empty, user doesn't exist
-    if (!query_res)
-    {
-        console.log("User doesn't exist");
+      let salt = res[0].PASSALT;
+      if (salt !== undefined) password += salt;
+      // TODO hash password here
+
+      if (password !== res[0].PASSHASH)
+      {
+        console.log("Password does not match");
         response.sendStatus(401);
+      }
+      else
+      {
+        console.log("redirecting to user dashboard");
+        request.session.uid = username;
+        console.log("userid: ", request.session.uid);
+        response.redirect(301, '/dashboard');
+      }
     }
     else
     {
-        res.redirect('/dashboard');
+      console.log("User doesn't exist");
+      response.sendStatus(401);
     }
+  });
+});
+
+app.get("/signup", is_logged_in, (req, res) =>
+{
+  console.log("\n\nGET /signup\n");
+  res.sendFile(path.join(root,"signup.html"));
 });
 
 // user has submitted the login information
-app.post('/signup', not_logged_in, (request, response) =>
+app.post('/signup', is_logged_in, (request, response) =>
 {
-    console.log("\n\nPOST /login " + request.headers);
-    console.log("Session: " + request.session);
-    var username = request.username;
-    var password = request.password;
-    var query_string = "SELECT * FROM USERS WHERE USERNAME=?";
-    var query_res;
-    // query db for user info
-    db.query(query_string, username,(err, res)=>
-    {
-        if (err) {
-            console.log("Error");
-        }
-        console.log(res);
-        query_res = res;
-    });
+  console.log("\n\nPOST /signup ");
+  console.log(request.headers);
+
+  var email = request.headers.email;
+  var password = request.headers.password;
+  var name = request.headers.name;
+
+
+  if (!email || !password || !name)
+  {
+    response.sendStatus(400);
+    return false;
+  }
+
+  // query db for user info
+  db.query("SELECT * FROM USERS WHERE EMAIL=?", email, (err, res) =>
+  {
+    if (err) console.log(err);
+    console.log(res);
+
     // if the user exists reply back that they exist
-    if (query_res)
+    if (res !== undefined || res.length > 0)
     {
-        // placeholder function
-        response.send("User already exists. Pick a different username or try logging in");
+      // placeholder function
+      response.sendStatus(401);
+      return false;
     }
     // user does not exist, so make a new table for them
+    if (create_user(name, email, password) === mysql.ER_TABLE_EXISTS_ERROR)
+    {
+      response.sendStatus(409);
+    }
     else
     {
-        query_string = "CREATE TABLE ? ?";
-        db.query(query_string, [username, create_user_str], (err, res) =>
-        {
-            if (err) console.log(err);
-            console.log(res);
-        })
+      request.session.uid = email;
+      response.redirect("/dashboard");
     }
+  });
+
 });
 
-// the user's dashboard
-app.get('/dashboard', is_logged_in, (request, response) =>
+// function that inserts the user into the tables and creates a new user table
+function create_user(name, email, password)
 {
-    var username = request.session.username;
-    var query_string = "SELECT * FROM ?";
-    db.query(query_string, username,function(err, response)
+  let passhash = bcrypt.hash(password, 64, (err, hash) =>
+  {
+    if (err) console.log(err);
+  });
+
+  // insert the new user in the table of users
+  var data = { USERNAME: name, PASSHASH: passhash, EMAIL: email};
+  db.query("INSERT INTO USERS SET ?", data, (err, res) =>
+  {
+    if (err)
     {
-        if (err) throw err;
-        console.log(response);
-    });
+      console.log(err.code);
+      return err.code;
+    }
+    console.log(res);
+    console.log("User table created");
+  });
+
+  // create a new table for this user which stores all their info
+  var query = "CREATE TABLE " + mysql.escapeId(email, true) + " LIKE template";
+  db.query(query, (err, res) =>
+  {
+    if (err)
+    {
+      console.log(err.code);
+      return err.code;
+    }
+    console.log(res);
+    console.log("User inserted to users table")
+  });
+  return 0;
+}
+
+// the user's dashboard
+app.get('/dashboard', not_logged_in, (request, response) =>
+{
+  var uid = request.session.uid;
+  var query_string = "SELECT * FROM " + mysql.escapeId(uid, true);
+  db.query(query_string, uid, function (err, res)
+  {
+    if (err)
+    {
+      console.log(err);
+      response.sendStatus(501);
+    }
+    console.log(res);
+    if (res)
+    {
+     response.sendFile(path.join(root,"dashboard/dashboard.html"));
+    }
+  });
 });
 
 
 // check if the user is logged into an account
 function is_logged_in(request, response, next)
 {
-    console.log("verifying login");
-    var user = request.session.user;
-    // if the user is not logged in redirect them to the login page
-    if (!user)
-    {
-        request.session.reset();
-        response.redirect("/login");
-    }
-    // do the next function
-    else next();
+  console.log("verifying login");
+  // if the user is not logged in redirect them to the login page
+  if (request.session.uid && request.cookies.tracker)
+  {
+    console.log("redirecting to user dashboard");
+    response.redirect("/dashboard");
+  }
+  // do the next function
+  else
+  {
+    console.log("user not logged in");
+    next();
+  }
 }
 
-function not_logged_in(req, res, next)
+function not_logged_in(request, response, next)
 {
-    console.log('verifying user is not logged in');
-    if (!req.session.user)
-    {
-        next();
-    }
-    else
-    {
-        res.redirect("/dashboard");
-    }
-
+  console.log('verifying user is not logged in');
+  if (!request.session.uid || !request.cookies.tracker)
+  {
+    console.log("redirecting to login page");
+    response.redirect("/login");
+  }
+  // do the next function
+  else
+  {
+    console.log("user logged in");
+    next();
+  }
 }
 

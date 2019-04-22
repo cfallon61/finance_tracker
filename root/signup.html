@@ -1,26 +1,80 @@
-<h1>Sign up</h1>
-<div div style="text-align: center">
-    <div class="form-group">
-        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="userEmail" name="loginId" placeholder="Email address" required>
-    </div>
-    <div class="form-group">
-        <input type="password" class="form-control" id="userPassword" name="password" placeholder="Password" required>
-    </div>
-    <br><br>
-    <div class="row">
-        <button id="login" class="button" onclick="onSubmit()">Sign Up</button>
-    </div>
+<h1>
+    <link rel="stylesheet" type="text/css" href="css-sheets/signup-cosmetic.css">
+
+    Sign up
+</h1>
+<div div class="signup">
+    <h1>Create an Account</h1>
+
+    <form>
+        <p>Name</p>
+        <input type="text" name="" placeholder="Name" id="name">
+
+        <p>Email</p>
+        <input type="email" name="" placeholder="Enter Email" id="userEmail">
+        <p>Password</p>
+        <input type="password" name="" placeholder="Enter Password" id="userPassword">
+        <p>Confirm Password</p>
+        <input type="password" name="" placeholder="Re-enter Password" id="confirmPassword">
+        <input type="submit" name="" value="Create Account" onclick="onSubmit()">
+
+        <p id="loginFailed"></p>
+
+        <a href="#">Login</a>
+    </form>
+
 </div>
 
 <script>
-    function onSubmit()
+  function validate_fields(pass, email, name, confirm)
+  {
+    if (name === "" || pass === "" || email === "" || confirm === "")
     {
-
+      alert("Please fill all fields.");
+      return false
     }
+    if (pass !== confirm)
+    {
+      alert("Passwords do not match.");
+      return false;
+    }
+
+    return true;
+  }
+
+  function onSubmit()
+  {
+    let pass = document.getElementById('userPassword').value;
+    let email = document.getElementById('userEmail').value;
+    let name = document.getElementById("name").value;
+    let confirm = document.getElementById("confirmPassword").value;
+
+    if (validate_fields(pass, email, name, confirm))
+    {
+      let request = new XMLHttpRequest();
+      request.open("POST", "/signup", true);
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      request.setRequestHeader("withCredentials", true);
+      request.setRequestHeader("email", email);
+      request.setRequestHeader("password", pass);
+      request.setRequestHeader("name", name);
+
+      request.onreadystatechange = () =>
+      {
+        if (request.readyState === 4)
+        {
+          if (request.status === 401)
+          {
+            alert("User already exists.");
+          }
+          else if (request.status === 400)
+          {
+            alert("Invalid email, password, or name");
+          }
+        }
+      };
+      request.send();
+      console.log(request);
+    }
+  }
 </script>
