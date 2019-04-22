@@ -34,6 +34,8 @@ function insertTableRow() {
 function deleteTableRow(x) {
     var rowIndex = x.parentNode.parentNode;
     rowIndex.parentNode.removeChild(rowIndex);
+
+    //TODO: Implement update total upon removal
 }
 
 function updateTotal(table, amount) {
