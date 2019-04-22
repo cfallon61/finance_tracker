@@ -63,14 +63,11 @@
       {
         if (request.readyState === 4)
         {
-          if (request.status === 401)
+          if (request.status !== 200)
           {
-            alert("User already exists.");
+              alert(request.getResponseHeader("Error"));
           }
-          else if (request.status === 400)
-          {
-            alert("Invalid email, password, or name");
-          }
+
         }
       };
       request.send();

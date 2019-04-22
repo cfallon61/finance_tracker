@@ -2,13 +2,15 @@
   "name": "finance_tracker",
   "version": "1.0.0",
   "dependencies": {
-    "bcrypt": "latest",
+    "bcrypt": "^3.0.6",
     "client-sessions": "latest",
     "cookie-parser": "^1.4.4",
     "crypto": "^1.0.1",
-    "express": "latest",
+    "express": "^4.16.4",
     "express-session": "^1.16.1",
     "mysql": "latest",
+    "mysql-promise": "^5.0.0",
+    "promise-mysql": "^3.3.1",
     "uuid": "^3.3.2"
   }
 }
