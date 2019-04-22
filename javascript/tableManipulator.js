@@ -28,7 +28,7 @@ function insertTableRow() {
     typeCell.innerHTML = type;
     removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
 
-    updateTotal(table, document.getElementById("amountField").value)
+    updateTotal(table, amount)
 }
 
 function deleteTableRow(x) {
@@ -49,11 +49,11 @@ function updateTotal(table, amount) {
         return;
     }
 
-    var oldTotalNumberStr = total.substr(1);
+    var oldTotalNumberStr = oldTotalStr.substr(1);
 
     var oldNumber = Number(oldTotalNumberStr);
 
-    var newNumber = oldNumber + amount;
+    var newNumber = oldNumber + Number(amount);
 
     table.rows[rowAmount].cells[1].innerHTML = "$" + newNumber;
 }
