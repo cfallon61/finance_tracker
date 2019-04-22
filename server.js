@@ -72,19 +72,18 @@ app.post('/login', is_logged_in, (request, response) =>
 
   console.log("\n\nPOST /login ");
 
-  var username = request.headers.email;
+  var email = request.headers.email;
   var password = request.headers.password;
-  var query_string = "SELECT * FROM USERS WHERE EMAIL=?";
 
-  console.log("\n\nUsername: " + username + " | Password: " + password);
+  console.log("\n\nUsername: " + email + " | Password: " + password);
   // empty username or password
-  if (!username || !password)
+  if (!email || !password)
   {
     response.sendStatus(401);
     return;
   }
   // query db for user info
-  db.query(query_string, username, (err, res) =>
+  db.query("SELECT * FROM ?? WHERE EMAIL=?",  [init.db.user_table, email], (err, res) =>
   {
     if (err)
     {
@@ -96,27 +95,24 @@ app.post('/login', is_logged_in, (request, response) =>
     // if the response is not empty
     if (res !== undefined && res.length > 0)
     {
-      let salt = res[0].PASSALT;
-      if (salt !== undefined) password += salt;
-      // TODO hash password here
-
-      if (password !== res[0].PASSHASH)
+      // compare the password to the hashed password
+      if (bcrypt.compareSync(password, res[0].PASSHASH) === true)
       {
         console.log("Password does not match");
-        response.sendStatus(401);
+        response.status(401).send("Invalid Password");
       }
       else
       {
         console.log("redirecting to user dashboard");
-        request.session.uid = username;
+        request.session.uid = email;
         console.log("userid: ", request.session.uid);
-        response.redirect(301, '/dashboard');
+        response.redirect('/dashboard');
       }
     }
     else
     {
       console.log("User doesn't exist");
-      response.sendStatus(401);
+      response.status(401).send("No such user");
     }
   });
 });
@@ -140,71 +136,65 @@ app.post('/signup', is_logged_in, (request, response) =>
 
   if (!email || !password || !name)
   {
+    console.log("invalid password, email, or name");
     response.sendStatus(400);
     return false;
   }
 
   // query db for user info
-  db.query("SELECT * FROM USERS WHERE EMAIL=?", email, (err, res) =>
+  db.query("SELECT * FROM ?? WHERE EMAIL=?", [init.db.user_table, email], (err, res) =>
   {
     if (err) console.log(err);
-    console.log(res);
+    console.log("result: ", res);
 
     // if the user exists reply back that they exist
-    if (res !== undefined || res.length > 0)
+    if (res !== undefined && res.length > 0)
     {
-      // placeholder function
-      response.sendStatus(401);
-      return false;
+      console.log("user " + email + " found");
+      response.status(401).send("User already exists.");
+      return;
     }
     // user does not exist, so make a new table for them
-    if (create_user(name, email, password) === mysql.ER_TABLE_EXISTS_ERROR)
-    {
-      response.sendStatus(409);
-    }
-    else
-    {
-      request.session.uid = email;
-      response.redirect("/dashboard");
-    }
-  });
-
+    create_user(name, email, password, response);
+    request.session.uid = email;
+    response.redirect("/dashboard");
+  }); // end query
 });
 
 // function that inserts the user into the tables and creates a new user table
-function create_user(name, email, password)
+function create_user(name, email, password, response)
 {
-  let passhash = bcrypt.hash(password, 64, (err, hash) =>
+  bcrypt.hash(password, 10, (err, hash) =>
   {
+    console.log('hashing password');
+
     if (err) console.log(err);
-  });
 
-  // insert the new user in the table of users
-  var data = { USERNAME: name, PASSHASH: passhash, EMAIL: email};
-  db.query("INSERT INTO USERS SET ?", data, (err, res) =>
-  {
-    if (err)
+    console.log(hash);
+    // insert the new user in the table of users
+    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email};
+    db.query("INSERT INTO ?? SET ?", [init.db.user_table, data], (err, res) =>
     {
-      console.log(err.code);
-      return err.code;
-    }
-    console.log(res);
-    console.log("User table created");
-  });
+      if (err) console.log(err.code);
+      console.log(res);
+      console.log("User table created");
+    }); // end query
 
-  // create a new table for this user which stores all their info
-  var query = "CREATE TABLE " + mysql.escapeId(email, true) + " LIKE template";
-  db.query(query, (err, res) =>
-  {
-    if (err)
+    // create a new table for this user which stores all their info
+    var query = "CREATE TABLE " + mysql.escapeId(email, true) + " LIKE template";
+    db.query(query, (err, res) =>
     {
-      console.log(err.code);
-      return err.code;
-    }
-    console.log(res);
-    console.log("User inserted to users table")
-  });
-  return 0;
+      if (err)
+      {
+        console.log("error: ", err.code);
+        response.status(401).send("User already exists.");
+        return;
+      }
+      console.log(res);
+      console.log("User inserted to users table")
+    }); // end query
+
+  }); // end hash
 }
 
 // the user's dashboard

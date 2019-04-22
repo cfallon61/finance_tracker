@@ -47,7 +47,7 @@
           {
             if (request.status === 401)
             {
-              alert("Invalid username or password");
+              alert(request.getAllResponseHeaders());
             }
           }
         };
