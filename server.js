@@ -125,6 +125,16 @@ app.post('/login', is_logged_in, (request, response) =>
   });
 });
 
+
+// function to log the user out.
+app.get("/signout", not_logged_in, (req, res) =>
+{
+  console.log("signing user out");
+  req.session.uid = null;
+  req.session.destroy();
+  res.redirect("/");
+});
+
 app.get("/signup", is_logged_in, (req, res) =>
 {
   console.log("\n\nGET /signup\n");
@@ -162,6 +172,13 @@ app.post('/signup', is_logged_in, (request, response) =>
     .catch(err => response.status(500).send({"Error":err}));
 });
 
+// redirect the user to their dashboard. totally unnecessary
+app.get("/dashboard", not_logged_in, (request, response) =>
+{
+  var uid = request.session.uid;
+  response.redirect(`/dashboard/${uid}`);
+});
+
 // the user's dashboard
 app.get('/dashboard/:uid', not_logged_in, (request, response) =>
 {
@@ -178,9 +195,9 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
     });
   }).then((res) =>
     {
-      // TODO change this placeholder
+      // TODO change this placeholder this may break things
       console.log("redirecting");
-      response.redirect("/");
+      response.sendFile(path.join(root, "dashboard.html"));
     })
     .catch((err) =>
     {
@@ -188,7 +205,6 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
       response.status(501).send("Error", "The server encountered an error.");
     });
 });
-
 
 // post request sent by the dashboard
 app.post("/data", not_logged_in, (request, response) =>
