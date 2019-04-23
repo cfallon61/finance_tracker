@@ -229,7 +229,7 @@ app.post("/data", not_logged_in, (request, response) =>
     const table_name = mysql.escapeId(uid, true);
     query_string = "INSERT INTO " + table_name +
       "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?" +
-      "SELECT TRANS_ID FROM " + table_name;
+      "SELECT TRANS_ID FROM " + table_name + " ORDER BY TRANS_ID DESC LIMIT 1";
 
     options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
   }

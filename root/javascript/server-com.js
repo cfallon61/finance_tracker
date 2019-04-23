@@ -15,6 +15,7 @@ function dump_user_data() {
       {
         // send to table parser
         json = JSON.parse(request.responseText);
+        alert(request.responseText);
       }
       else alert(request.responseText);
     }
