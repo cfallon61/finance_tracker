@@ -94,3 +94,28 @@ function changeDropdown(value) {
 
     document.getElementById("specificDropdown").innerHTML = options;
 }
+
+function checkValidInput() {
+  var input = document.getElementById("nameField");
+
+  if (input.value === "") {
+      return false;
+  }
+
+  input = document.getElementById("amountField");
+  if (input.value === "") {
+      return false;
+  }
+
+  input = document.getElementById("selectField");
+  if (input.value === "Select"){
+      return false;
+  }
+
+  input = document.getElementById("desc");
+  if (input.value === "Description of transaction.") {
+      return false;
+  }
+
+  return true;
+}

@@ -1,5 +1,9 @@
 function insertTableRow() {
 
+    if (!checkValidInput()) {
+        return;
+    }
+
     var monthFromDate = getMonthFromDate();
 
     var tableName = convertNumbertoMonth(monthFromDate);

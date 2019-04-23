@@ -4,6 +4,18 @@ table, th, td {
     margin-bottom: 20px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+th {
+    height: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 caption {
     border: 1px solid black;
     font-weight: bold;
