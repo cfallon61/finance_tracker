@@ -209,7 +209,7 @@ app.post("/data", not_logged_in, (request, response) =>
 
     query_string = "INSERT INTO " + mysql.escapeId(uid, true) +
       "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?";
-    
+
     options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
   }
   else
@@ -269,7 +269,7 @@ function check_user_in_users(data)
 
       console.log(res);
 
-      if (res.length > 0) reject("User already exists.");
+      if (res !== undefined && res.length > 0) reject("User already exists.");
       else resolve(data);
     });
   });
