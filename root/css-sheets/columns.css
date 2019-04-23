@@ -1,10 +1,10 @@
-#Col1, #Col2, .field1, .monthField, .field2, .field3, .field4{
+#Col1, #Col2, .field1, .field2, .field3, .field4{
     float: left;
 }
 
 #Col1, #Col2 {
     margin-top: 20px;
-    margin-right: 50px;
+    margin-right: 10px;
 }
 
 input {

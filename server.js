@@ -132,7 +132,7 @@ app.get("/signup", is_logged_in, (req, res) =>
 });
 
 // user has submitted the login information
-app.post('/signup', (request, response) =>
+app.post('/signup', is_logged_in, (request, response) =>
 {
   console.log("\n\nPOST /signup ");
   console.log(request.headers);

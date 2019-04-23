@@ -1,8 +1,13 @@
 body {
-    background-color: mediumpurple;
-    /*background-image: linear-gradient(65deg, darkred, rebeccapurple);*/
+
+    text-align: center;
+}
+
+.input {
+    display: inline-block;
 }
 
 .TableBody {
-    text-align: center;
+    display: inline-block;
 }
+

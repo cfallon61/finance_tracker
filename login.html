@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+    <head>
+
+    <link rel="stylesheet" type="text/css" href="css-sheets/login-cosmetic.css">
+
+    <title>Login</title>
+    </head>
+
+    <body>
+
+        <div class="loginBox">
+            <h1>Login Here</h1>
+
+            <form>
+
+                <label for="userEmail">Username</label>
+                <input type="email" name="" placeholder="Enter Username" id="userEmail">
+
+                <label for="userPassword">Password</label>
+                <input type="password" name="" placeholder="Enter Password" id="userPassword">
+
+                <input type="submit" name="" value="Login" onclick="onSubmit()">
+
+                <p id="loginFailed"></p>
+
+                <a href="#">Create an account.</a>
+            </form>
+
+        </div>
+
+    </body>
+
+    <script>
+        function onSubmit() {
+            pass = document.getElementById('userPassword').value;
+            email = document.getElementById('userEmail').value;
+            console.log(email + " | " + pass);
+            user = "test";
+            var request = new XMLHttpRequest();
+            request.open("POST", "/login", true);
+            request.setRequestHeader("Content-type", "text/html");
+            request.setRequestHeader("withCredentials", true);
+            request.setRequestHeader("username", email);
+            request.setRequestHeader("password", pass);
+            request.send(email);
+            console.log(request);
+            console.log("login");
+        }
+    </script>

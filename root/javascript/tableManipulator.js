@@ -1,14 +1,12 @@
 function insertTableRow() {
 
-    if  (!checkInNumberRange(document.getElementById("dayField").value)) {
-        return;
-    }
+    var monthFromDate = getMonthFromDate();
 
-    var tableMonth = document.getElementById("monthDropdown").value;
+    var tableName = convertNumbertoMonth(monthFromDate);
 
-    var table = document.getElementById(tableMonth);
+    var table = document.getElementById(tableName);
 
-    var row = table.insertRow(-1);
+    var row = table.insertRow(1);
 
     var nameCell = row.insertCell(0);
     var dateCell = row.insertCell(1);
@@ -16,14 +14,65 @@ function insertTableRow() {
     var typeCell = row.insertCell(3);
     var removeCell = row.insertCell(4);
 
+    var amount = document.getElementById("amountField").value;
+    var type = document.getElementById("typeDropdown").value;
+
     nameCell.innerHTML = document.getElementById("nameField").value;
-    dateCell.innerHTML = convertMonthToNumber(tableMonth) + "/" + document.getElementById("dayField").value;
-    amountCell.innerHTML = "$" + document.getElementById("amountField").value;
-    typeCell.innerHTML = document.getElementById("typeDropdown").value;
+    dateCell.innerHTML = document.getElementById("dateField").value;
+
+    if (type === "Credit") {
+        amount = amount * -1;
+    }
+
+    amountCell.innerHTML = "$" + amount;
+    typeCell.innerHTML = type;
     removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
+
+    updateTotal(table, amount)
 }
 
 function deleteTableRow(x) {
     var rowIndex = x.parentNode.parentNode;
+
+    while (x && x.nodeName !== "TR") {
+        x = x.parentNode;
+    }
+
+    var table = x.closest("table").id;
+    table = document.getElementById(table);
+
+    var data;
+
+    if (x) {
+        var cells = x.getElementsByTagName("td");
+
+        data = cells[2].innerHTML;
+
+        data = data.substr(1);
+    }
+
     rowIndex.parentNode.removeChild(rowIndex);
+
+    //TODO: Implement update total upon removal
+    updateTotal(table, data);
+}
+
+function updateTotal(table, amount) {
+
+    var rowAmount = table.rows.length - 1;
+
+    var oldTotalStr = table.rows[rowAmount].cells[1].innerHTML;
+
+    if (oldTotalStr === ""){
+        table.rows[rowAmount].cells[1].innerHTML = "$" + amount;
+        return;
+    }
+
+    var oldTotalNumberStr = oldTotalStr.substr(1);
+
+    var oldNumber = Number(oldTotalNumberStr);
+
+    var newNumber = oldNumber + Number(amount);
+
+    table.rows[rowAmount].cells[1].innerHTML = "$" + newNumber;
 }

@@ -17,32 +17,17 @@
     <body>
 
         <div class="input">
+
+            <h1>Input your information.</h1>
+
             <div class="field1">
                 <label for="nameField">Name:</label>
                 <input type="text" name="Name" id="nameField">
             </div>
 
-            <div class="monthField">
-                <label for="monthDropdown">Month:</label>
-                <select name="month" id="monthDropdown">
-                    <option selected value="January">January</option>
-                    <option value="Feburary">Feburary</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-                </select>
-            </div>
-
             <div class="field2">
-                <label for="dayField">Day:</label>
-                <input type="number" name="Day" id="dayField">
+                <label for="dateField">Date:</label>
+                <input type="date" name="Date" id="dateField" value="2018-01-01" min="2018-01-01" max="2018-12-31">
             </div>
 
             <div class="field3">
@@ -70,7 +55,7 @@
             <div id="Col1">
 
                 <div id="subgroup">
-                    <table id="January">
+                    <table id="JANUARY">
                         <caption>January</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -80,6 +65,11 @@
                             <th class="remove">Remove</th>
                         </tr>
 
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4">$0</td>
+                        </tr>
+
 
                     </table>
 
@@ -87,7 +77,7 @@
 
                 <div id="subgroup">
 
-                    <table id="Feburary">
+                    <table id="FEBRUARY">
                         <caption>Feburary</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -97,6 +87,11 @@
                             <th class="remove">Remove</th>
                         </tr>
 
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
 
                     </table>
 
@@ -104,7 +99,7 @@
 
                 <div id="subgroup">
 
-                    <table id="March">
+                    <table id="MARCH">
                         <caption>March</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -114,6 +109,11 @@
                             <th class="remove">Remove</th>
                         </tr>
 
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
 
                     </table>
 
@@ -122,7 +122,7 @@
 
                 <div id="subgroup">
 
-                    <table id="April">
+                    <table id="APRIL">
                         <caption>April</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -132,22 +132,9 @@
                             <th class="remove">Remove</th>
                         </tr>
 
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="May">
-                        <caption>May</caption>
                         <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="remove">Remove</th>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
                         </tr>
 
 
@@ -158,7 +145,30 @@
 
                 <div id="subgroup">
 
-                    <table id="June">
+                    <table id="MAY">
+                        <caption>May</caption>
+                        <tr>
+                            <th class="name">Name</th>
+                            <th class="date">Date</th>
+                            <th class="amount">Amount</th>
+                            <th class="type">Type</th>
+                            <th class="remove">Remove</th>
+                        </tr>
+
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
+
+                    </table>
+
+                </div>
+
+
+                <div id="subgroup">
+
+                    <table id="JUNE">
                         <caption>June</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -166,6 +176,11 @@
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
                             <th class="remove">Remove</th>
+                        </tr>
+
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
                         </tr>
 
 
@@ -178,7 +193,7 @@
             <div id="Col2">
 
                 <div id="subgroup">
-                    <table id="July">
+                    <table id="JULY">
                         <caption>July</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -188,6 +203,11 @@
                             <th class="remove">Remove</th>
                         </tr>
 
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
                     </table>
 
                 </div>
@@ -195,7 +215,7 @@
 
 
                 <div id="subgroup">
-                    <table id="August">
+                    <table id="AUGUST">
                         <caption>August</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -205,6 +225,11 @@
                             <th class="remove">Remove</th>
                         </tr>
 
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
 
                     </table>
 
@@ -213,7 +238,7 @@
 
 
                 <div id="subgroup">
-                    <table id="September">
+                    <table id="SEPTEMBER">
                         <caption>September</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -223,6 +248,11 @@
                             <th class="remove">Remove</th>
                         </tr>
 
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
 
                     </table>
 
@@ -231,7 +261,7 @@
 
 
                 <div id="subgroup">
-                    <table id="October">
+                    <table id="OCTOBER">
                         <caption>October</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -241,23 +271,9 @@
                             <th class="remove">Remove</th>
                         </tr>
 
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-
-                    <table id="November">
-                        <caption>November</caption>
                         <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="remove">Remove</th>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
                         </tr>
 
 
@@ -268,7 +284,31 @@
 
 
                 <div id="subgroup">
-                    <table id="December">
+
+                    <table id="NOVEMBER">
+                        <caption>November</caption>
+                        <tr>
+                            <th class="name">Name</th>
+                            <th class="date">Date</th>
+                            <th class="amount">Amount</th>
+                            <th class="type">Type</th>
+                            <th class="remove">Remove</th>
+                        </tr>
+
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
+                        </tr>
+
+
+                    </table>
+
+                </div>
+
+
+
+                <div id="subgroup">
+                    <table id="DECEMBER">
                         <caption>December</caption>
                         <tr>
                             <th class="name">Name</th>
@@ -276,6 +316,11 @@
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
                             <th class="remove">Remove</th>
+                        </tr>
+
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="4"></td>
                         </tr>
 
 
