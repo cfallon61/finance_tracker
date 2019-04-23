@@ -188,6 +188,52 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
     });
 });
 
+
+// post request sent by the dashboard
+app.post("/data", not_logged_in, (request, response) =>
+{
+  const uid = request.session.uid;
+  const query_string = "SELECT * FROM " + mysql.escapeId(uid);
+
+  db.query(query_string, (err, res) =>
+  {
+    if (err)
+    {
+      console.log("Code:", err.code, " | SQL:", err.sql);
+      response.status(500).send("Error: The server encountered an error.");
+    }
+    else
+    {
+      console.log(res);
+      response.json(res);
+    }
+  });
+});
+
+// client function to remove an entry from the DB
+app.delete("/data/", not_logged_in, (request, response) =>
+{
+  const trans_id = request.query.trans_id;
+  const uid = request.session.uid;
+  const query_string = "DELETE FROM " + mysql.escapeId(uid, true) + " WHERE" +
+    " TRANS_ID=?";
+
+  db.query(query_string, trans_id, (err, res) =>
+  {
+    if (err)
+    {
+      console.log("Code:", err.code, " | SQL:", err.sql);
+      response.status(501).send("Error: The server encountered an error.");
+    }
+    else
+    {
+      console.log(res);
+      response.status(202).send("Deletion successful.");
+    }
+  })
+});
+
+
 // query the database during creation to see if the user already exists in the table of users
 function check_user_in_users(data)
 {
