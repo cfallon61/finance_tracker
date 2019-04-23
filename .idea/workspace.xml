@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="" />
+    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -117,7 +119,6 @@
       <list>
         <option value="$PROJECT_DIR$/server.js.ts" />
         <option value="$PROJECT_DIR$/login.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/root/dashboard.html" />
         <option value="$PROJECT_DIR$/root/dashboard/dashboard.html" />
         <option value="$PROJECT_DIR$/root/css-sheets/signup-cosmetic.css" />
@@ -129,6 +130,7 @@
         <option value="$PROJECT_DIR$/notes" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/root/signup.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -299,11 +301,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56550000" />
+    <option name="totallyTimeSpent" value="56795000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1928" y="8" width="1232" height="1064" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.213868" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -364,13 +365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="436" selection-start-line="436" selection-end-line="436" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -438,6 +432,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
         </state>
       </provider>
     </entry>
