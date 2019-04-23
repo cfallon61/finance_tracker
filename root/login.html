@@ -41,14 +41,16 @@
         request.setRequestHeader("withCredentials", true);
         request.setRequestHeader("email", email);
         request.setRequestHeader("password", pass);
+
         request.onreadystatechange = () =>
         {
-          if (request.readyState === 4)
+          if (request.readyState === XMLHttpRequest.DONE)
           {
-            if (request.status === 401)
+            if (request.status < 400)
             {
-              alert(request.getResponseHeader("Error"));
+              window.location.href = request.responseText;
             }
+            else alert(request.responseText);
           }
         };
         request.send();

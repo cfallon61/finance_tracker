@@ -61,13 +61,13 @@
 
       request.onreadystatechange = () =>
       {
-        if (request.readyState === 4)
+        if (this.readyState === XMLHttpRequest.DONE)
         {
-          if (request.status !== 200)
+          if (request.status < 400)
           {
-              alert(request.getResponseHeader("Error"));
+            window.location.href = request.responseText;
           }
-
+          else alert(request.responseText);
         }
       };
       request.send();
