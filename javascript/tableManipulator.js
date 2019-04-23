@@ -20,7 +20,7 @@ function insertTableRow() {
     nameCell.innerHTML = document.getElementById("nameField").value;
     dateCell.innerHTML = document.getElementById("dateField").value;
 
-    if (type == "Credit") {
+    if (type === "Credit") {
         amount = amount * -1;
     }
 
@@ -33,9 +33,28 @@ function insertTableRow() {
 
 function deleteTableRow(x) {
     var rowIndex = x.parentNode.parentNode;
+
+    while (x && x.nodeName !== "TR") {
+        x = x.parentNode;
+    }
+
+    var table = x.closest("table").id;
+    table = document.getElementById(table);
+
+    var data;
+
+    if (x) {
+        var cells = x.getElementsByTagName("td");
+
+        data = cells[2].innerHTML;
+
+        data = data.substr(1);
+    }
+
     rowIndex.parentNode.removeChild(rowIndex);
 
     //TODO: Implement update total upon removal
+    updateTotal(table, data);
 }
 
 function updateTotal(table, amount) {
@@ -44,7 +63,7 @@ function updateTotal(table, amount) {
 
     var oldTotalStr = table.rows[rowAmount].cells[1].innerHTML;
 
-    if (oldTotalStr == ""){
+    if (oldTotalStr === ""){
         table.rows[rowAmount].cells[1].innerHTML = "$" + amount;
         return;
     }
