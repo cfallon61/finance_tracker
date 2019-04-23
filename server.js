@@ -30,6 +30,7 @@ db.connect((err) =>
 
 // set the application to use the cookies specified in config.json
 app.use(cookieParser());
+app.use(express.json());
 app.use(sessions(init.cookies));
 app.use(express.static(root));
 
@@ -188,6 +189,74 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
     });
 });
 
+
+// post request sent by the dashboard
+app.post("/data", not_logged_in, (request, response) =>
+{
+  const init = request.query.init_load;
+  const insert = request.query.insert;
+  const uid = request.session.uid;
+  var query_string;
+  var options = [];
+
+  if (init && !insert)
+  {
+    query_string = "SELECT * FROM " + mysql.escapeId(uid, true);
+  }
+  else if (!init && insert)
+  {
+    const values = request.body;
+
+    query_string = "INSERT INTO " + mysql.escapeId(uid, true) +
+      "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?";
+
+    options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
+  }
+  else
+  {
+    response.status(500).send("Error: The server encountered an error.");
+    return;
+  }
+
+  db.query(query_string, options, (err, res) =>
+  {
+    if (err)
+    {
+      console.log("Code:", err.code, " | SQL:", err.sql);
+      response.status(500).send("Error: The server encountered an error.");
+    }
+    else
+    {
+      console.log(res);
+      response.json(res);
+    }
+  });
+});
+
+// client function to remove an entry from the DB
+app.delete("/data", not_logged_in, (request, response) =>
+{
+  const trans_id = request.query.trans_id;
+  const uid = request.session.uid;
+  const query_string = "DELETE FROM " + mysql.escapeId(uid, true) + " WHERE" +
+    " TRANS_ID=?";
+
+  db.query(query_string, trans_id, (err, res) =>
+  {
+    if (err)
+    {
+      console.log("Code:", err.code, " | SQL:", err.sql);
+      response.status(501).send("Error: The server encountered an error.");
+    }
+    else
+    {
+      console.log(res);
+      response.status(202).send("Deletion successful.");
+    }
+  })
+});
+
+
 // query the database during creation to see if the user already exists in the table of users
 function check_user_in_users(data)
 {
@@ -200,7 +269,7 @@ function check_user_in_users(data)
 
       console.log(res);
 
-      if (res.length > 0) reject("User already exists.");
+      if (res !== undefined && res.length > 0) reject("User already exists.");
       else resolve(data);
     });
   });

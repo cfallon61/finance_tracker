@@ -3,6 +3,7 @@
 !README
 !.gitignore
 !root/*
+!root/**
 !root
 !node_modules
 !node_modules/*
