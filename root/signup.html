@@ -61,7 +61,7 @@
 
       request.onreadystatechange = () =>
       {
-        if (this.readyState === XMLHttpRequest.DONE)
+        if (request.readyState === XMLHttpRequest.DONE)
         {
           if (request.status < 400)
           {
