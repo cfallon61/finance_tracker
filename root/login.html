@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+    <head>
+
+    <link rel="stylesheet" type="text/css" href="css-sheets/login-cosmetic.css">
+
+    <title>Login</title>
+    </head>
+
+    <body>
+
+        <div class="loginBox">
+            <h1>Login Here</h1>
+
+            <form>
+
+                <p>Email</p>
+                <input type="email" name="" placeholder="Enter Email" id="userEmail">
+                <p>Password</p>
+                <input type="password" name="" placeholder="Enter Password" id="userPassword">
+                <input type="submit" name="" value="Login" onclick="onSubmit()">
+
+                <p id="loginFailed"></p>
+
+                <a href="#">Create an account.</a>
+            </form>
+
+        </div>
+
+    </body>
+
+    <script>
+      function onSubmit()
+      {
+        let pass = document.getElementById('userPassword').value;
+        let email = document.getElementById('userEmail').value;
+
+        let request = new XMLHttpRequest();
+        request.open("POST", "/login", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.setRequestHeader("withCredentials", true);
+        request.setRequestHeader("email", email);
+        request.setRequestHeader("password", pass);
+
+        request.onreadystatechange = () =>
+        {
+          if (request.readyState === XMLHttpRequest.DONE)
+          {
+            if (request.status < 400)
+            {
+              window.location.href = request.responseText;
+            }
+            else alert(request.responseText);
+          }
+        };
+        request.send();
+        console.log(request);
+        console.log("login");
+      }
+    </script>
