@@ -78,3 +78,19 @@ function getMonthFromDate() {
     return date[1];
 
 }
+
+var specificsByTypes = {
+    Debit: ["Income", "Loan"],
+    Credit: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation"]
+};
+
+function changeDropdown(value) {
+
+    var options = "";
+
+    for (categoryId in specificsByTypes[value]) {
+        options += "<option>" + specificsByTypes[value][categoryId] + "</option>";
+    }
+
+    document.getElementById("specificDropdown").innerHTML = options;
+}

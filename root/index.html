@@ -37,10 +37,21 @@
 
             <div class="field4">
                 <label for="typeDropdown">Type:</label>
-                <select name="type" id="typeDropdown">
-                    <option selected value="Debit">Debit</option>
+                <select name="type" id="typeDropdown" onchange="changeDropdown(this.value)">
+                    <option value="" disabled selected>Select</option>
+                    <option value="Debit">Debit</option>
                     <option value="Credit">Credit</option>
                 </select>
+            </div>
+
+            <div class="field5">
+
+                <select name="specificType" id="specificDropdown"></select>
+            </div>
+
+            <div class="field6">
+
+                <textarea id="desc" rows="2" cols="30">Description of transaction.</textarea>
             </div>
 
             <div class="confirm">
@@ -62,12 +73,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4">$0</td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -84,12 +97,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -106,12 +121,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -129,12 +146,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -152,12 +171,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -175,12 +196,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -200,12 +223,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
                     </table>
@@ -222,12 +247,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -245,12 +272,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -268,12 +297,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -292,12 +323,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
@@ -315,12 +348,14 @@
                             <th class="date">Date</th>
                             <th class="amount">Amount</th>
                             <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="description">Description</th>
                             <th class="remove">Remove</th>
                         </tr>
 
                         <tr>
                             <td>Net Amount:</td>
-                            <td colspan="4"></td>
+                            <td colspan="6">$0</td>
                         </tr>
 
 
