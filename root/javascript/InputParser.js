@@ -107,7 +107,7 @@ function checkValidInput() {
       return false;
   }
 
-  input = document.getElementById("selectField");
+  input = document.getElementById("specificDropdown");
   if (input.value === "Select"){
       return false;
   }
@@ -118,4 +118,9 @@ function checkValidInput() {
   }
 
   return true;
+}
+
+function getNumberFromDollarStr(str) {
+    let substr = str.substr(1);
+    return Number(substr);
 }

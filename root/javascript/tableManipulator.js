@@ -1,5 +1,7 @@
 function insertTableRow() {
 
+    console.log(2);
+
     if (!checkValidInput()) {
         return;
     }
@@ -36,7 +38,9 @@ function insertTableRow() {
     descriptionCell.innerHTML = document.getElementById("desc").value;
     removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
 
-    updateTotal(table, amount)
+    updateTotal(table, amount);
+
+    updateData();
 }
 
 function deleteTableRow(x) {
@@ -61,8 +65,11 @@ function deleteTableRow(x) {
 
     rowIndex.parentNode.removeChild(rowIndex);
 
-    //TODO: Implement update total upon removal
+    data = "-" + data;
+
     updateTotal(table, data);
+
+    updateData();
 }
 
 function updateTotal(table, amount) {
