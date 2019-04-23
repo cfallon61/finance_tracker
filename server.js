@@ -30,6 +30,7 @@ db.connect((err) =>
 
 // set the application to use the cookies specified in config.json
 app.use(cookieParser());
+app.use(express.json());
 app.use(sessions(init.cookies));
 app.use(express.static(root));
 
@@ -192,10 +193,32 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
 // post request sent by the dashboard
 app.post("/data", not_logged_in, (request, response) =>
 {
+  const init = request.query.init_load;
+  const insert = request.query.insert;
   const uid = request.session.uid;
-  const query_string = "SELECT * FROM " + mysql.escapeId(uid);
+  var query_string;
+  var options = [];
 
-  db.query(query_string, (err, res) =>
+  if (init && !insert)
+  {
+    query_string = "SELECT * FROM " + mysql.escapeId(uid, true);
+  }
+  else if (!init && insert)
+  {
+    const values = request.body;
+
+    query_string = "INSERT INTO " + mysql.escapeId(uid, true) +
+      "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?";
+    
+    options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
+  }
+  else
+  {
+    response.status(500).send("Error: The server encountered an error.");
+    return;
+  }
+
+  db.query(query_string, options, (err, res) =>
   {
     if (err)
     {
@@ -211,7 +234,7 @@ app.post("/data", not_logged_in, (request, response) =>
 });
 
 // client function to remove an entry from the DB
-app.delete("/data/", not_logged_in, (request, response) =>
+app.delete("/data", not_logged_in, (request, response) =>
 {
   const trans_id = request.query.trans_id;
   const uid = request.session.uid;
