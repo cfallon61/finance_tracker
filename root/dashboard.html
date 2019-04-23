@@ -1,392 +1,389 @@
 <!DOCTYPE html>
 <!--suppress ALL -->
 <html>
-    <head>
+<head>
 
-        <title>Finance Tracker</title>
+    <title>Finance Tracker</title>
 
-        <link rel="shortcut icon" type="image/png" href="/images/png/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/images/png/favicon.png">
 
-        <link rel="stylesheet" type="text/css" href="/css-sheets/columns.css">
-        <link rel="stylesheet" type="text/css" href="/css-sheets/table.css">
-        <link rel="stylesheet" type="text/css" href="/css-sheets/cosmetic.css">
+    <link rel="stylesheet" type="text/css" href="/css-sheets/columns.css">
+    <link rel="stylesheet" type="text/css" href="/css-sheets/table.css">
+    <link rel="stylesheet" type="text/css" href="/css-sheets/cosmetic.css">
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-        <script src="/javascript/tableManipulator.js"></script>
-        <script src="/javascript/InputParser.js"></script>
-        <script src="/javascript/graph.js"></script>
+    <script src="/javascript/tableManipulator.js"></script>
+    <script src="/javascript/InputParser.js"></script>
+    <script src="/javascript/graph.js"></script>
+    <script src="/javascript/server-com.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="dump_user_data()"></body>
+<body onload="createChart()">
 
-    <body onload="createChart()">
-
-        <nav>
-            <a id="logo" href="#">Finance Tracker</a>
-            <a id="signout" href="/signout">Sign Out</a>
-        </nav>
+<nav>
+    <a id="logo" href="#">Finance Tracker</a>
+    <a id="signout" href="/signout">Sign Out</a>
+</nav>
 
 
+<div class="input">
 
-        <div class="input">
+    <h1>Input your information.</h1>
 
-            <h1>Input your information.</h1>
+    <div class="field1">
+        <label for="nameField">Name:</label>
+        <input type="text" name="Name" id="nameField">
+    </div>
 
-            <div class="field1">
-                <label for="nameField">Name:</label>
-                <input type="text" name="Name" id="nameField">
-            </div>
+    <div class="field2">
+        <label for="dateField">Date:</label>
+        <input type="date" name="Date" id="dateField" value="2018-01-01"
+               min="2018-01-01" max="2018-12-31">
+    </div>
 
-            <div class="field2">
-                <label for="dateField">Date:</label>
-                <input type="date" name="Date" id="dateField" value="2018-01-01" min="2018-01-01" max="2018-12-31">
-            </div>
+    <div class="field3">
+        <label for="amountField">Amount:</label>
+        <input type="number" name="Amount" id="amountField">
+    </div>
 
-            <div class="field3">
-                <label for="amountField">Amount:</label>
-                <input type="number" name="Amount" id="amountField">
-            </div>
+    <div class="field4">
+        <label for="typeDropdown">Type:</label>
+        <select name="type" id="typeDropdown"
+                onchange="changeDropdown(this.value)">
+            <option value="" disabled selected>Select</option>
+            <option value="Debit">Debit</option>
+            <option value="Credit">Credit</option>
+        </select>
+    </div>
 
-            <div class="field4">
-                <label for="typeDropdown">Type:</label>
-                <select name="type" id="typeDropdown" onchange="changeDropdown(this.value)">
-                    <option value="" disabled selected>Select</option>
-                    <option value="Debit">Debit</option>
-                    <option value="Credit">Credit</option>
-                </select>
-            </div>
+    <div class="field5">
 
-            <div class="field5">
+        <select name="specificType" id="specificDropdown"></select>
+    </div>
 
-                <select name="specificType" id="specificDropdown"></select>
-            </div>
+    <div class="field6">
 
-            <div class="field6">
+        <textarea id="desc" rows="2"
+                  cols="30">Description of transaction.</textarea>
+    </div>
 
-                <textarea id="desc" rows="2" cols="30">Description of transaction.</textarea>
-            </div>
+    <div class="confirm">
+        <button type="button" onclick="insertTableRow()">Insert</button>
+    </div>
 
-            <div class="confirm">
-                <button type="button" onclick="insertTableRow()">Insert</button>
-            </div>
+</div>
+
+<div class="TableBody">
+
+    <!-- January - June -->
+    <div id="Col1">
+
+        <div id="subgroup">
+            <table id="JANUARY">
+                <caption>January</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
 
         </div>
 
-        <div class="TableBody">
-
-            <!-- January - June -->
-            <div id="Col1">
-
-                <div id="subgroup">
-                    <table id="JANUARY">
-                        <caption>January</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-                <div id="subgroup">
-
-                    <table id="FEBRUARY">
-                        <caption>Feburary</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-                <div id="subgroup">
-
-                    <table id="MARCH">
-                        <caption>March</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="APRIL">
-                        <caption>April</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="MAY">
-                        <caption>May</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="JUNE">
-                        <caption>June</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-            </div>
-
-            <!-- July - December -->
-            <div id="Col2">
-
-                <div id="subgroup">
-                    <table id="JULY">
-                        <caption>July</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="AUGUST">
-                        <caption>August</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="SEPTEMBER">
-                        <caption>September</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="OCTOBER">
-                        <caption>October</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-
-                    <table id="NOVEMBER">
-                        <caption>November</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="DECEMBER">
-                        <caption>December</caption>
-                        <tr>
-                            <th class="name">Name</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-                            <th class="description">Description</th>
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-            </div>
+        <div id="subgroup">
+
+            <table id="FEBRUARY">
+                <caption>Feburary</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
 
         </div>
 
-        <div class="chartClass">
-            <canvas id="lineChart" width="10" height="10"></canvas>
+        <div id="subgroup">
+
+            <table id="MARCH">
+                <caption>March</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
         </div>
 
 
+        <div id="subgroup">
 
-    </body>
+            <table id="APRIL">
+                <caption>April</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+
+            <table id="MAY">
+                <caption>May</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+
+            <table id="JUNE">
+                <caption>June</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+    </div>
+
+    <!-- July - December -->
+    <div id="Col2">
+
+        <div id="subgroup">
+            <table id="JULY">
+                <caption>July</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+            <table id="AUGUST">
+                <caption>August</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+            <table id="SEPTEMBER">
+                <caption>September</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+            <table id="OCTOBER">
+                <caption>October</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+
+            <table id="NOVEMBER">
+                <caption>November</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+        <div id="subgroup">
+            <table id="DECEMBER">
+                <caption>December</caption>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="date">Date</th>
+                    <th class="amount">Amount</th>
+                    <th class="type">Type</th>
+                    <th class="specificType">Specific Type</th>
+                    <th class="description">Description</th>
+                    <th class="remove">Remove</th>
+                </tr>
+
+                <tr>
+                    <td>Net Amount:</td>
+                    <td colspan="6">$0</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<div class="chartClass">
+    <canvas id="lineChart" width="10" height="10"></canvas>
+</div>
+
+
+</body>
 
 </html>

@@ -209,28 +209,34 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
 // post request sent by the dashboard
 app.post("/data", not_logged_in, (request, response) =>
 {
-  const init = request.query.init_load;
-  const insert = request.query.insert;
+  console.log("POST /data?", request.query);
+  let init = request.query.init_load;
+  let insert = request.query.insert;
   const uid = request.session.uid;
   var query_string;
   var options = [];
 
-  if (init && !insert)
+  console.log("init=", init, "&insert=", insert);
+  // ?init=true&insert=false
+  if (init === "true" && insert === 'false' )
   {
     query_string = "SELECT * FROM " + mysql.escapeId(uid, true);
   }
-  else if (!init && insert)
+  // ?init=false&insert=true
+  else if (init === 'false' && insert === 'true')
   {
     const values = request.body;
-
-    query_string = "INSERT INTO " + mysql.escapeId(uid, true) +
-      "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?";
+    const table_name = mysql.escapeId(uid, true);
+    query_string = "INSERT INTO " + table_name +
+      "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?" +
+      "SELECT TRANS_ID FROM " + table_name + " ORDER BY TRANS_ID DESC LIMIT 1";
 
     options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
   }
   else
   {
-    response.status(500).send("Error: The server encountered an error.");
+    console.log(request.session.uid, "Sent invalid parameters");
+    response.status(500).send("Error: Invalid parameters.");
     return;
   }
 
@@ -244,7 +250,7 @@ app.post("/data", not_logged_in, (request, response) =>
     else
     {
       console.log(res);
-      response.json(res);
+      response.status(202).json(res);
     }
   });
 });
@@ -252,8 +258,17 @@ app.post("/data", not_logged_in, (request, response) =>
 // client function to remove an entry from the DB
 app.delete("/data", not_logged_in, (request, response) =>
 {
+  console.log("DELETE /data?" + JSON.stringify(request.query));
   const trans_id = request.query.trans_id;
   const uid = request.session.uid;
+
+  // if there was an error with sending the transaction id send an error
+  if (trans_id === undefined || trans_id === "")
+  {
+    response.status(501).send("Error: transaction id:", trans_id);
+    return;
+  }
+
   const query_string = "DELETE FROM " + mysql.escapeId(uid, true) + " WHERE" +
     " TRANS_ID=?";
 
@@ -266,7 +281,7 @@ app.delete("/data", not_logged_in, (request, response) =>
     }
     else
     {
-      console.log(res);
+      console.log("Deletion of", trans_id, "successful. Result:", res);
       response.status(202).send("Deletion successful.");
     }
   })
