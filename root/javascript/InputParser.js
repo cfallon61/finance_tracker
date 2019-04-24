@@ -106,10 +106,51 @@ function checkValidInput() {
       return false;
   }
 
+  if (!checkDayCorrectness()) {
+      return false;
+  }
+
   return true;
 }
 
 function getNumberFromDollarStr(str) {
     let substr = str.substr(1);
     return Number(substr);
+}
+
+function checkDayCorrectness() {
+    var date = document.getElementById("dateField").value.split("-");
+
+    let month = date[1];
+
+    let day = Number(date[2]);
+
+    switch (month) {
+        case "01":
+            return (day < 32);
+        case "02":
+            return (day < 29);
+        case "03":
+            return (day < 32);
+        case "04":
+            return (day < 31);
+        case "05":
+            return (day < 32);
+        case "06":
+            return (day < 31);
+        case "07":
+            return (day < 32);
+        case "08":
+            return (day < 32);
+        case "09":
+            return (day < 31);
+        case "10":
+            return (day < 32);
+        case "11":
+            return (day < 31);
+        case "12":
+            return (day < 32);
+        default:
+            return false;
+    }
 }
