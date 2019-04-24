@@ -61,8 +61,10 @@ function getMonthFromDate() {
 }
 
 const specificsByTypes = {
-    Deposit: ["Income", "Loan"],
-    Withdraw: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation"]
+    Deposit: ["Income", "Loan", "Gift"],
+    Withdraw: ["Housing", "Utilities", "Insurance", "Food",
+      "Recreation", "Recurring Bills", "Gas", "Gifts",
+      "Health Care", "Personal Care", "Debt", "Other"]
 };
 
 function changeDropdown(value) {

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="new bug with totals not being parsed correctly @jesse">
+    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="merged reece's react into master&#10;added some fields to the descriptions for more granularity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/root/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/root/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/root/javascript/InputParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/InputParser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/root/javascript/routing.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/routing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/javascript/server-com.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/javascript/tableManipulator.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/tableManipulator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/root/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,54 +21,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
+            <state relative-caret-position="24">
               <caret line="149" selection-start-line="149" selection-end-line="149" />
               <folding>
-                <element signature="e#1798#3312#0" />
                 <element signature="e#4817#4895#0" />
-                <element signature="e#4988#5659#0" />
                 <element signature="e#5757#7125#0" />
                 <element signature="e#7237#8059#0" />
-                <element signature="e#8193#8552#0" />
-                <element signature="e#8622#9058#0" />
-                <element signature="e#9132#9630#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/root/index.html">
+        <entry file="file://$PROJECT_DIR$/root/javascript/routing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/root/signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+            <state relative-caret-position="720">
+              <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/root/javascript/routing.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="65" column="53" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/root/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="38" column="79" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
+            <state relative-caret-position="128">
+              <caret line="528" selection-start-line="528" selection-end-line="528" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,35 +56,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/root/javascript/tableManipulator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="204" column="20" lean-forward="true" selection-start-line="204" selection-end-line="205" />
+            <state relative-caret-position="23">
+              <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/root/css-sheets/portal-cosmetic.css">
+        <entry file="file://$PROJECT_DIR$/root/javascript/InputParser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/root/css-sheets/login-cosmetic.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/root/css-sheets/signup-cosmetic.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
+            <state relative-caret-position="139">
+              <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -127,11 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>User doesn</find>
-      <find>signout</find>
-      <find>sign</find>
-      <find>/&quot;</find>
-      <find>specific type</find>
       <find>specific</find>
       <find>name</find>
       <find>specific Type</find>
@@ -152,11 +106,16 @@
       <find>alert</find>
       <find>parseFloat</find>
       <find>*</find>
-      <find>}</find>
       <find>GET /login</find>
       <find>is_logg</find>
-      <find>/signup</find>
       <find>/sign</find>
+      <find>/signup</find>
+      <find>/login</find>
+      <find>}</find>
+      <find>withdraw</find>
+      <find>{&quot;Error</find>
+      <find>Error</find>
+      <find>&quot;Error&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>signup</replace>
@@ -188,18 +147,18 @@
         <option value="$PROJECT_DIR$/client_functions.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/notes" />
-        <option value="$PROJECT_DIR$/root/javascript/InputParser.js" />
         <option value="$PROJECT_DIR$/config.json" />
-        <option value="$PROJECT_DIR$/root/login.html" />
         <option value="$PROJECT_DIR$/root/index.html" />
-        <option value="$PROJECT_DIR$/root/dashboard.html" />
-        <option value="$PROJECT_DIR$/root/javascript/tableManipulator.js" />
         <option value="$PROJECT_DIR$/root/css-sheets/portal-cosmetic.css" />
         <option value="$PROJECT_DIR$/root/css-sheets/login-cosmetic.css" />
         <option value="$PROJECT_DIR$/root/css-sheets/signup-cosmetic.css" />
+        <option value="$PROJECT_DIR$/root/javascript/tableManipulator.js" />
         <option value="$PROJECT_DIR$/root/signup.html" />
+        <option value="$PROJECT_DIR$/root/login.html" />
+        <option value="$PROJECT_DIR$/root/javascript/InputParser.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/root/javascript/routing.js" />
+        <option value="$PROJECT_DIR$/root/dashboard.html" />
       </list>
     </option>
   </component>
@@ -231,20 +190,7 @@
               <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
               <item name="finance_tracker" type="462c0819:PsiDirectoryNode" />
               <item name="root" type="462c0819:PsiDirectoryNode" />
-              <item name="css-sheets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finance_tracker" type="462c0819:PsiDirectoryNode" />
-              <item name="root" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finance_tracker" type="462c0819:PsiDirectoryNode" />
-              <item name="root" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="jpg" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
@@ -259,6 +205,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="9.4.0" />
@@ -266,7 +213,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -476,27 +423,41 @@
       <option name="project" value="LOCAL" />
       <updated>1556116254401</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="signup page routing issues">
+      <created>1556121238373</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1556121238373</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fixed signup routing problems">
+      <created>1556126698181</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1556126698181</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81337000" />
+    <option name="totallyTimeSpent" value="87906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1116" height="870" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17608897" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1621872" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" x="1104" y="30" width="432" height="833" id="Run" order="2" type="WINDOWED" visible="true" weight="0.26222223" />
-      <window_info anchor="bottom" x="3168" y="44" width="657" height="1028" id="Debug" order="3" type="WINDOWED" weight="0.6180556" />
+      <window_info anchor="bottom" x="1104" y="30" width="432" height="833" id="Run" order="2" type="WINDOWED" visible="true" weight="0.26222223" />
+      <window_info anchor="bottom" x="1104" y="30" width="432" height="833" id="Debug" order="3" type="WINDOWED" weight="0.6180556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.094444446" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286517" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.2949438" />
@@ -564,7 +525,10 @@
     <MESSAGE value="fixed authentication for real this time" />
     <MESSAGE value="fixed rounding errors.&#10;remove extra bit at end of date&#10;deletion now persistent and working.&#10;shouldn't alert the user of page source code if the session expires - lol that was an interesting &quot;feature&quot;" />
     <MESSAGE value="new bug with totals not being parsed correctly @jesse" />
-    <option name="LAST_COMMIT_MESSAGE" value="new bug with totals not being parsed correctly @jesse" />
+    <MESSAGE value="signup page routing issues" />
+    <MESSAGE value="fixed signup routing problems" />
+    <MESSAGE value="merged reece's react into master&#10;added some fields to the descriptions for more granularity" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged reece's react into master&#10;added some fields to the descriptions for more granularity" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -650,13 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/javascript/InputParser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -671,20 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-982">
           <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/root/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="38" column="79" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/root/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -709,10 +652,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/javascript/tableManipulator.js">
+    <entry file="file://$PROJECT_DIR$/root/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="204" column="20" lean-forward="true" selection-start-line="204" selection-end-line="205" />
+        <state relative-caret-position="207">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -723,34 +666,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/root/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="149" selection-start-line="149" selection-end-line="149" />
-          <folding>
-            <element signature="e#1798#3312#0" />
-            <element signature="e#4817#4895#0" />
-            <element signature="e#4988#5659#0" />
-            <element signature="e#5757#7125#0" />
-            <element signature="e#7237#8059#0" />
-            <element signature="e#8193#8552#0" />
-            <element signature="e#8622#9058#0" />
-            <element signature="e#9132#9630#0" />
-          </folding>
+        <state relative-caret-position="230">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/signup.html">
+    <entry file="file://$PROJECT_DIR$/root/javascript/tableManipulator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+        <state relative-caret-position="23">
+          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="149" selection-start-line="149" selection-end-line="149" />
+          <folding>
+            <element signature="e#4817#4895#0" />
+            <element signature="e#5757#7125#0" />
+            <element signature="e#7237#8059#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/root/javascript/routing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="65" column="53" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
+        <state relative-caret-position="720">
+          <caret line="71" column="39" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/javascript/InputParser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="528" selection-start-line="528" selection-end-line="528" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

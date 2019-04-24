@@ -69,7 +69,7 @@ function onSubmitSignup()
         {
           window.location.replace(request.responseText);
         }
-        else alert(request.response);
+        else alert(request.responseText);
       }
     };
     request.send();
