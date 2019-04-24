@@ -141,49 +141,49 @@ app.get("/signout", not_logged_in, (req, res) =>
 
 app.get("/signup", is_logged_in, (req, res) =>
 {
-  console.log("\n\nGET /signup\n");
+  console.log("\nGET /signup\n");
   res.sendFile(path.join(root, "signup.html"));
 });
 
 // user has submitted the login information
 app.post('/signup', is_logged_in, (request, response) =>
 {
-  console.log("\n\nPOST /signup ");
+  console.log("\nPOST /signup ");
   console.log(request.headers);
 
   var email = request.headers.email;
   var password = request.headers.password;
   var name = request.headers.name;
 
-  if (!email || !password || !name)
+  // if any fields are empty or the email is not valid return an error
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email === ""
+    || password === ""
+    || name === ""
+    || !re.test(email))
   {
     console.log("invalid password, email, or name");
     response.status(400).send("Error: Invalid Email, Name, or Password");
     return;
   }
 
-  bcrypt.genSalt(10, (err, salt) =>
+  // hash password
+  bcrypt.hash(password, 10, (err, hash) =>
   {
     if (err) console.log(err);
-
-    bcrypt.hash(password, salt, (err, hash) =>
-    {
-      if (err) console.log(err);
-      const data = [email, name, hash, salt];
-      check_user_in_users(data)
-        .then(create_user_table)
-        .then(insert_to_users_table)
-        .then(() =>
-        {
-          request.session.uid = email;
-          const url = `/dashboard/${request.session.uid}`;
-          response.status(202).send(url);
-        })
-        .catch(err => response.status(500).send({"Error":err}));
-    });
+    const data = [email, name, hash];
+    check_user_in_users(data)
+      .then(create_user_table)
+      .then(insert_to_users_table)
+      .then(() =>
+      {
+        request.session.uid = email;
+        const url = `/dashboard/${request.session.uid}`;
+        console.log("redirecting to dashboard at", request.session.uid);
+        response.status(202).send(url);
+      })
+      .catch(err => response.status(500).send("Error" + err.toString()));
   });
-
-
 });
 
 // redirect the user to their dashboard. totally unnecessary
@@ -209,7 +209,6 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
     });
   }).then((res) =>
     {
-      // TODO change this placeholder this may break things
       console.log("redirecting");
       response.sendFile(path.join(root, "dashboard.html"));
     })
@@ -346,11 +345,10 @@ function insert_to_users_table(data)
   const email = data[0];
   const name = data[1];
   const hash = data[2];
-  const salt = data[3];
 
   return new Promise((resolve, reject) =>
   {
-    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email, PASS_SALT: salt};
+    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email};
     db.query("INSERT INTO ?? SET ?", [init.db.user_table, data], (err, res) =>
     {
       if (err) reject([err.code, err.sql]);
@@ -366,7 +364,7 @@ function insert_to_users_table(data)
 // check if the user is logged into an account
 function is_logged_in(request, response, next)
 {
-  console.log("verifying login");
+  console.log("\nverifying login");
   // if the user is not logged in redirect them to the login page
   if (request.session.uid && request.cookies.tracker)
   {
@@ -383,7 +381,7 @@ function is_logged_in(request, response, next)
 
 function not_logged_in(request, response, next)
 {
-  console.log('verifying user is not logged in');
+  console.log('\nverifying user is not logged in');
   if (!request.session.uid || !request.cookies.tracker)
   {
     console.log("redirecting to login page");

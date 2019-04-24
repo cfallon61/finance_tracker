@@ -195,7 +195,7 @@ function deleteTableRow(x)
     var cells = x.getElementsByTagName("td");
 
     data = cells[2].innerHTML;
-    trans_id = parseInt(cells[0].innerText);
+    trans_id = cells[0].innerText;
     data = data.substr(1);
   }
 

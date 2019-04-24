@@ -1,14 +1,4 @@
 
-function onSignup()
-{
-
-}
-
-function onLogin()
-{
-
-}
-
 function onSubmitLogin()
 {
   let pass = document.getElementById('userPassword').value;
