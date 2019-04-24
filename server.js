@@ -261,12 +261,7 @@ app.post("/data", not_logged_in, (request, response) =>
       console.log("Code:", err.code, " | SQL:", err.sql);
       response.status(500).send("Error: The server encountered an error.");
     }
-    else
-    {
-      console.log("\n\n", res);
-      // response.setHeader("Content-type", 'application/json;charset=UTF-8');
-      response.status(202).json(res);
-    }
+    else response.status(202).json(res);
   });
 });
 
@@ -274,6 +269,7 @@ app.post("/data", not_logged_in, (request, response) =>
 app.delete("/data", not_logged_in, (request, response) =>
 {
   console.log("DELETE /data?" + JSON.stringify(request.query));
+  console.log(request.query);
   const trans_id = request.query.trans_id;
   const uid = request.session.uid;
 

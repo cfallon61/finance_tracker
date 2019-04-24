@@ -59,12 +59,14 @@ function parse_to_table(data)
       var descCell = row.insertCell(4);
       var removeCell = row.insertCell(5);
 
-      var amount = parseFloat(entry.AMOUNT);
+      var amount = parseFloat(entry.AMOUNT).toFixed(2);
       var type = entry.TRANS_TYPE;
 
       // TODO change this so it gets it from the DB
-      idCell.innerHTML = parseInt(entry.TRANS_ID);
-      dateCell.innerHTML = entry.TRANS_DATE;
+      idCell.innerHTML = entry.TRANS_ID;
+      // DB returns date in format 'YYYY-MM-DDHH:MIN:SEC...' so this
+      // strips off the end bit.
+      dateCell.innerHTML = entry.TRANS_DATE.substr(0, 10);
 
       if (type === "Withdrawal")
       {
@@ -97,17 +99,12 @@ function dump_user_data()
   {
     if (request.readyState === XMLHttpRequest.DONE)
     {
-      if (request.status === 202)
+      if (request.status < 400 && request.status >= 200)
       {
-        // send to table parser
         json = JSON.parse(request.responseText);
         parse_to_table(json);
-        // alert(JSON.parse(json)[0].TRANS_ID);
       }
-      else
-      {
-        alert(request.responseText);
-      }
+      else alert(request.responseText);
     }
   };
   request.send(params);
@@ -138,13 +135,11 @@ function insert_to_db(date, desc, amount, type, idCell)
   {
     if (request.readyState === XMLHttpRequest.DONE)
     {
-      if (request.status === 202)
+      if (request.status < 400 && request.status >= 200)
       {
         // send to table parser
-        // alert(request.responseText);
         json = JSON.parse(request.responseText);
         idCell.innerHTML = json.insertId;
-        // alert(json.insertId);
       }
       else
       {
@@ -162,7 +157,7 @@ function insert_to_db(date, desc, amount, type, idCell)
 function delete_from_db(trans_id)
 {
   let request = new XMLHttpRequest();
-  const params = "?trans_id=" + toString(trans_id);
+  const params = "?trans_id=" + trans_id.toString();
   console.log(trans_id);
   const url = "/data" + params;
   request.open("DELETE", url, true);
@@ -171,16 +166,9 @@ function delete_from_db(trans_id)
 
   request.onreadystatechange = () =>
   {
-    if (request.readyState === XMLHttpRequest.DONE)
-    {
-      if (request.status === 202)
-      {
-        // send to table parser
-        console.log(request.responseText);
-      }
-      else
-      {
-        alert(request.responseText);
+    if (request.readyState === XMLHttpRequest.DONE) {
+      if (request.status >= 400) {
+        alert(request.responseText)
       }
     }
   };
@@ -239,7 +227,7 @@ function updateTotal(table, amount)
 
   var oldNumber = Number(oldTotalNumberStr);
 
-  var newNumber = oldNumber + Number(amount);
+  var newNumber = oldNumber + Number(amount).toFixed(2);
 
   table.rows[rowAmount].cells[1].innerHTML = "$" + newNumber;
 }
