@@ -4,6 +4,8 @@ let express = require("express");
 let path = require("path");
 let sessions = require("express-session");
 let cookieParser = require('cookie-parser');
+let https = require('https');
+let fs = require('fs');
 
 // config.json holds the credentials for the database and other important
 // init settings
@@ -43,12 +45,21 @@ app.use((req, res, next) =>
   next();
 });
 
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app)
+  .listen(8080, (err) =>
+  {
+    if (err) throw err;
+    console.log("Server started");
+  });
+
 // start the server listening on port 8080
-app.listen(8080, function (err)
-{
-  if (err) throw err;
-  console.log("Server started");
-});
+// app.listen(8080, function (err)
+// {
+//   if (err) throw err;
+// });
 
 // Get root file path
 app.get('/', function (request, response)
