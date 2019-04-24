@@ -102,10 +102,12 @@ app.post('/login', is_logged_in, (request, response) =>
         return;
       }
 
+      // compare stored hash
       bcrypt.compare(password, res[0].PASSHASH, (err, res)=>
       {
       if (err) console.log(err);
 
+      // password matches
       if (res === false)
       {
         console.log("Password does not match");
@@ -115,10 +117,7 @@ app.post('/login', is_logged_in, (request, response) =>
       {
         console.log("\nredirecting to user dashboard");
         request.session.uid = email;
-        console.log("userid:", request.session.uid);
-        const url = `/dashboard/${request.session.uid}`;
-        console.log(url);
-        response.status(202).send(url);
+        response.status(202).send(`/dashboard/${request.session.uid}`;
       }
       });
     }

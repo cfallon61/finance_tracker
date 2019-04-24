@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/root/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/javascript/InputParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/InputParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/javascript/tableManipulator.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/tableManipulator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="103" column="76" selection-start-line="103" selection-start-column="76" selection-end-line="103" selection-end-column="76" />
+            <state relative-caret-position="789">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
             </state>
           </provider>
         </entry>
@@ -32,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/root/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
+              <caret line="7" column="59" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -63,6 +60,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="484">
               <caret line="24" column="19" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/notes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -110,6 +116,7 @@
       <find>updateData</find>
       <find>insert</find>
       <find>insert_to_db</find>
+      <find>hash</find>
     </findStrings>
     <replaceStrings>
       <replace>signup</replace>
@@ -141,16 +148,16 @@
         <option value="$PROJECT_DIR$/root/css-sheets/signup-cosmetic.css" />
         <option value="$PROJECT_DIR$/root/css-sheets/login-cosmetic.css" />
         <option value="$PROJECT_DIR$/client_functions.js" />
-        <option value="$PROJECT_DIR$/notes" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/root/login.html" />
         <option value="$PROJECT_DIR$/root/javascript/routing.js" />
         <option value="$PROJECT_DIR$/root/index.html" />
-        <option value="$PROJECT_DIR$/root/javascript/InputParser.js" />
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/root/signup.html" />
         <option value="$PROJECT_DIR$/root/dashboard.html" />
         <option value="$PROJECT_DIR$/root/javascript/tableManipulator.js" />
+        <option value="$PROJECT_DIR$/root/javascript/InputParser.js" />
+        <option value="$PROJECT_DIR$/notes" />
         <option value="$PROJECT_DIR$/server.js" />
       </list>
     </option>
@@ -367,11 +374,32 @@
       <option name="project" value="LOCAL" />
       <updated>1556065778496</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Merge branch 'master' of https://github.com/cfallon61/finance_tracker&#10;&#10;# Conflicts:&#10;#&#9;root/dashboard.html&#10;#&#9;root/javascript/tableManipulator.js&#10;&#10;Authentication doesn't work.">
+      <created>1556074855858</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1556074855858</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Merge branch 'master' of https://github.com/cfallon61/finance_tracker&#10;Authentication doesn't work.">
+      <created>1556074998597</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1556074998597</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fixed authentication for real this time">
+      <created>1556076662850</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1556076662850</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68883000" />
+    <option name="totallyTimeSpent" value="70798000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1928" y="8" width="1232" height="1064" extended-state="4" />
@@ -450,7 +478,10 @@
     <MESSAGE value="changed login routing stuff" />
     <MESSAGE value="routing problems" />
     <MESSAGE value="added server communication" />
-    <option name="LAST_COMMIT_MESSAGE" value="added server communication" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/cfallon61/finance_tracker&#10;&#10;# Conflicts:&#10;#&#9;root/dashboard.html&#10;#&#9;root/javascript/tableManipulator.js&#10;&#10;Authentication doesn't work." />
+    <MESSAGE value="Merge branch 'master' of https://github.com/cfallon61/finance_tracker&#10;Authentication doesn't work." />
+    <MESSAGE value="fixed authentication for real this time" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed authentication for real this time" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -508,13 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="10359" column="4" selection-start-line="10359" selection-start-column="4" selection-end-line="10359" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -611,7 +635,7 @@
     <entry file="file://$PROJECT_DIR$/root/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
+          <caret line="7" column="59" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -625,10 +649,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/notes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="103" column="76" selection-start-line="103" selection-start-column="76" selection-end-line="103" selection-end-column="76" />
+        <state relative-caret-position="789">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
         </state>
       </provider>
     </entry>
