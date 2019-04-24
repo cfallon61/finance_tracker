@@ -4,6 +4,7 @@
     <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/root/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/root/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/root/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/root/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,6 +32,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/root/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/root/javascript/routing.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="720">
@@ -39,16 +49,25 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/root/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/root/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="133" column="62" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
+            <state relative-caret-position="1180">
+              <caret line="129" column="46" selection-start-line="129" selection-start-column="46" selection-end-line="129" selection-end-column="46" />
               <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h1#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#body#2;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#2;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/root/css-sheets/cosmetic.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="206">
-              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -176,7 +195,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/notes" />
         <option value="$PROJECT_DIR$/config.json" />
-        <option value="$PROJECT_DIR$/root/index.html" />
         <option value="$PROJECT_DIR$/root/css-sheets/portal-cosmetic.css" />
         <option value="$PROJECT_DIR$/root/css-sheets/login-cosmetic.css" />
         <option value="$PROJECT_DIR$/root/css-sheets/signup-cosmetic.css" />
@@ -188,6 +206,7 @@
         <option value="$PROJECT_DIR$/root/javascript/routing.js" />
         <option value="$PROJECT_DIR$/root/css-sheets/cosmetic.css" />
         <option value="$PROJECT_DIR$/root/javascript/graph.js" />
+        <option value="$PROJECT_DIR$/root/index.html" />
         <option value="$PROJECT_DIR$/root/dashboard.html" />
       </list>
     </option>
@@ -494,11 +513,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556128724676</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fixed the broken things">
+      <created>1556129710338</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1556129710338</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89692000" />
+    <option name="totallyTimeSpent" value="90790000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1116" height="870" extended-state="0" />
@@ -509,12 +535,12 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" x="1104" y="30" width="432" height="833" id="Run" order="2" type="WINDOWED" visible="true" weight="0.26222223" />
+      <window_info anchor="bottom" x="1104" y="30" width="432" height="833" id="Run" order="2" type="WINDOWED" visible="true" weight="0.26222223" />
       <window_info anchor="bottom" x="1104" y="30" width="432" height="833" id="Debug" order="3" type="WINDOWED" weight="0.6180556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.094444446" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286517" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3286517" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.2949438" />
@@ -586,7 +612,8 @@
     <MESSAGE value="fixed signup routing problems" />
     <MESSAGE value="merged reece's react into master&#10;added some fields to the descriptions for more granularity" />
     <MESSAGE value="merge broke things" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge broke things" />
+    <MESSAGE value="fixed the broken things" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the broken things" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -682,20 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/root/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/root/signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -746,7 +759,7 @@
     <entry file="file://$PROJECT_DIR$/root/css-sheets/cosmetic.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
-          <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
@@ -764,15 +777,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/root/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/root/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="133" column="62" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
+        <state relative-caret-position="1180">
+          <caret line="129" column="46" selection-start-line="129" selection-start-column="46" selection-end-line="129" selection-end-column="46" />
           <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h1#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#body#2;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#2;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
