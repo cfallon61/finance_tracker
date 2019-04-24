@@ -74,4 +74,5 @@ nav a:hover {
 .chartClass {
     height: 400px;
     width: 400px;
+    display: inline-block;
 }
