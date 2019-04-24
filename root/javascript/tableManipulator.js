@@ -1,7 +1,5 @@
 function insertTableRow() {
 
-    console.log(2);
-
     if (!checkValidInput()) {
         return;
     }
@@ -19,8 +17,8 @@ function insertTableRow() {
     var amountCell = row.insertCell(2);
     var typeCell = row.insertCell(3);
     var specificCell = row.insertCell(4);
-    var descriptionCell = row.insertCell(5);
-    var removeCell = row.insertCell(6);
+    // var descriptionCell = row.insertCell(5);
+    var removeCell = row.insertCell(5);
 
     var amount = document.getElementById("amountField").value;
     var type = document.getElementById("typeDropdown").value;
@@ -35,7 +33,6 @@ function insertTableRow() {
     amountCell.innerHTML = "$" + amount;
     typeCell.innerHTML = type;
     specificCell.innerHTML = document.getElementById("specificDropdown").value;
-    descriptionCell.innerHTML = document.getElementById("desc").value;
     removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
 
     updateTotal(table, amount);
