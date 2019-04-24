@@ -34,40 +34,28 @@
     <h1>Input your information.</h1>
 
     <div class="field1">
-        <label for="nameField">Name:</label>
-        <input type="text" name="Name" id="nameField">
-    </div>
-
-    <div class="field2">
         <label for="dateField">Date:</label>
         <input type="date" name="Date" id="dateField" value="2018-01-01"
                min="2018-01-01" max="2018-12-31">
     </div>
 
-    <div class="field3">
+    <div class="field2">
         <label for="amountField">Amount:</label>
         <input type="number" name="Amount" id="amountField">
     </div>
 
-    <div class="field4">
+    <div class="field3">
         <label for="typeDropdown">Type:</label>
         <select name="type" id="typeDropdown"
                 onchange="changeDropdown(this.value)">
             <option value="" disabled selected>Select</option>
-            <option value="Debit">Debit</option>
-            <option value="Credit">Credit</option>
+            <option value="Deposit">Debit</option>
+            <option value="Withdrawal">Credit</option>
         </select>
     </div>
 
-    <div class="field5">
-
-        <select name="specificType" id="specificDropdown"></select>
-    </div>
-
-    <div class="field6">
-
-        <textarea id="desc" rows="2"
-                  cols="30">Description of transaction.</textarea>
+    <div class="field4">
+        <select name="descType" id="descDropdown"></select>
     </div>
 
     <div class="confirm">
@@ -85,12 +73,11 @@
             <table id="JANUARY">
                 <caption>January</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -109,12 +96,11 @@
             <table id="FEBRUARY">
                 <caption>Feburary</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -133,12 +119,11 @@
             <table id="MARCH">
                 <caption>March</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -158,12 +143,11 @@
             <table id="APRIL">
                 <caption>April</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -183,12 +167,11 @@
             <table id="MAY">
                 <caption>May</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -208,12 +191,11 @@
             <table id="JUNE">
                 <caption>June</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -235,12 +217,11 @@
             <table id="JULY">
                 <caption>July</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -258,12 +239,11 @@
             <table id="AUGUST">
                 <caption>August</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -282,12 +262,11 @@
             <table id="SEPTEMBER">
                 <caption>September</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -306,12 +285,11 @@
             <table id="OCTOBER">
                 <caption>October</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -331,12 +309,11 @@
             <table id="NOVEMBER">
                 <caption>November</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
@@ -355,12 +332,11 @@
             <table id="DECEMBER">
                 <caption>December</caption>
                 <tr>
-                    <th class="name">Name</th>
+                    <th class="id">ID</th>
                     <th class="date">Date</th>
                     <th class="amount">Amount</th>
                     <th class="type">Type</th>
-                    <th class="specificType">Specific Type</th>
-                    <th class="description">Description</th>
+                    <th class="descType">Description</th>
                     <th class="remove">Remove</th>
                 </tr>
 
