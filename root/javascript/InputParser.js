@@ -80,8 +80,8 @@ function getMonthFromDate() {
 }
 
 var specificsByTypes = {
-    Deposit: ["Income", "Loan", "Gift"],
-    Payment: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation", "Food", "Subscriptions", "Other"]
+    Deposit: ["Income", "Loan"],
+    Withdraw: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation"]
 };
 
 function changeDropdown(value) {
@@ -101,8 +101,8 @@ function checkValidInput() {
       return false;
   }
 
-  input = document.getElementById("specificDropdown");
-  if (input.value === "Select"){
+  input = document.getElementById("typeDropdown");
+  if (input.value === ""){
       return false;
   }
 
