@@ -23,12 +23,12 @@ function insertTableRow()
 
     dateCell.innerHTML = document.getElementById("dateField").value;
 
-    if (type === "Withdrawal")
+    if (type === "Withdraw")
     {
       amount = amount * -1;
     }
 
-    amountCell.innerHTML = "$" + amount;
+    amountCell.innerHTML = "$" + Number(amount).toFixed(2);
     typeCell.innerHTML = type;
     specificCell.innerHTML = document.getElementById("specificDropdown").value;
     removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
@@ -202,7 +202,7 @@ function deleteTableRow(x)
   rowIndex.parentNode.removeChild(rowIndex);
   delete_from_db(trans_id);
 
-  data = "-" + data;
+  data = Number(data) * -1;
   updateTotal(table, data);
   updateData();
 }
@@ -220,6 +220,8 @@ function updateTotal(table, amount)
 
   var oldTotalNumberStr = oldTotalStr.substr(1);
   var oldNumber = Number(oldTotalNumberStr);
-  var newNumber = oldNumber + Number(amount).toFixed(2);
-  table.rows[rowAmount].cells[1].innerHTML = "$" + newNumber;
+
+  var newNumber = oldNumber + Number(Number(amount).toFixed(2));
+
+  table.rows[rowAmount].cells[1].innerHTML = "$" + newNumber.toFixed(2);
 }
