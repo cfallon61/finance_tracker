@@ -45,7 +45,7 @@
             color: #474338;
             cursor: pointer;
             padding: 6px;
-            width: 12%;
+            width: 30%;
             text-align: left;
             border: none;
             outline: none;
@@ -105,9 +105,9 @@
     </style>
 </head>
 
-<!--<body background="/images/jpg/dashback.jpg"></body>-->
-<body onload="{dump_user_data(); alert('dumping user data');}"></body>
-<body onload="createChart()" , style="background: url(images/jpg/dashback.jpg) no-repeat; background-size: 100% 100%;">
+<body background="/images/jpg/dashback.jpg"></body>
+<body onload="{dump_user_data();}"></body>
+<body onload="createChart()" , style="background: url(../images/png/BG.png) no-repeat; background-size: 100% 100%;">
 
 <nav>
     <a id="logo" href="#">Finance Tracker</a>
@@ -118,20 +118,20 @@
 
 <div class="input">
 
-    <h1>Input your information.</h1>
+    <h1 style="font-family:Helvetica">Input your information.</h1>
 
             <div class="field2">
-                <label for="dateField">Date:</label>
+                <label for="dateField" style="font-family: Helvetica">Date:</label>
                 <input type="date" name="Date" id="dateField" value="2019-01-01" min="2019-01-01" max="2019-12-31">
             </div>
 
     <div class="field3">
-        <label for="amountField">Amount:</label>
+        <label for="amountField" style="font-family: Helvetica">Amount:</label>
         <input type="number" name="Amount" id="amountField" step='0.01' value='0.00' placeholder='0.00' min="0">
     </div>
 
     <div class="field4">
-        <label for="typeDropdown">Type:</label>
+        <label for="typeDropdown" style="font-family: Helvetica">Type:</label>
         <select name="type" id="typeDropdown" onchange="changeDropdown(this.value)">
             <option value="" disabled selected>Select</option>
             <option value="Deposit">Deposit</option>

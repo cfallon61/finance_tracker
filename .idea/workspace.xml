@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="merged reece's react into master&#10;added some fields to the descriptions for more granularity">
+    <list default="true" id="3f7a5ab1-d00f-428d-a86e-a5ece944677c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/root/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/root/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/javascript/InputParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/InputParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/root/javascript/routing.js" beforeDir="false" afterPath="$PROJECT_DIR$/root/javascript/routing.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,11 +42,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/root/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="528" selection-start-line="528" selection-end-line="528" />
+            <state relative-caret-position="260">
+              <caret line="133" column="62" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
               <folding>
                 <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/root/css-sheets/cosmetic.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -56,8 +75,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/root/javascript/tableManipulator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+            <state relative-caret-position="206">
+              <caret line="33" column="31" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/root/javascript/graph.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -66,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/root/javascript/InputParser.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="139">
-              <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+              <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -86,14 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>specific</find>
-      <find>name</find>
-      <find>specific Type</find>
-      <find>specificType</find>
-      <find>specificDropdown</find>
-      <find>nameField</find>
-      <find>specificCell</find>
-      <find>credit</find>
       <find>description</find>
       <find>parse</find>
       <find>init</find>
@@ -103,7 +123,6 @@
       <find>insert_to_db</find>
       <find>insert</find>
       <find>delete</find>
-      <find>alert</find>
       <find>parseFloat</find>
       <find>*</find>
       <find>GET /login</find>
@@ -112,10 +131,19 @@
       <find>/signup</find>
       <find>/login</find>
       <find>}</find>
-      <find>withdraw</find>
-      <find>{&quot;Error</find>
       <find>Error</find>
       <find>&quot;Error&quot;</find>
+      <find>withdraw</find>
+      <find>{&quot;Error</find>
+      <find>BG.png</find>
+      <find>bg.png</find>
+      <find>alert</find>
+      <find>type</find>
+      <find>budgettotal</find>
+      <find>budget</find>
+      <find>bud</find>
+      <find>march</find>
+      <find>date</find>
     </findStrings>
     <replaceStrings>
       <replace>signup</replace>
@@ -158,6 +186,8 @@
         <option value="$PROJECT_DIR$/root/javascript/InputParser.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/root/javascript/routing.js" />
+        <option value="$PROJECT_DIR$/root/css-sheets/cosmetic.css" />
+        <option value="$PROJECT_DIR$/root/javascript/graph.js" />
         <option value="$PROJECT_DIR$/root/dashboard.html" />
       </list>
     </option>
@@ -190,7 +220,20 @@
               <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
               <item name="finance_tracker" type="462c0819:PsiDirectoryNode" />
               <item name="root" type="462c0819:PsiDirectoryNode" />
+              <item name="css-sheets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="finance_tracker" type="462c0819:PsiDirectoryNode" />
+              <item name="root" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="finance_tracker" type="462c0819:PsiDirectoryNode" />
+              <item name="root" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="png" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="finance_tracker" type="b2602c69:ProjectViewProjectNode" />
@@ -437,11 +480,25 @@
       <option name="project" value="LOCAL" />
       <updated>1556126698181</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="merged reece's react into master&#10;added some fields to the descriptions for more granularity">
+      <created>1556127926931</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1556127926931</updated>
+    </task>
+    <task id="LOCAL-00027" summary="merge broke things">
+      <created>1556128724675</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1556128724676</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87906000" />
+    <option name="totallyTimeSpent" value="89692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1116" height="870" extended-state="0" />
@@ -452,7 +509,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" x="1104" y="30" width="432" height="833" id="Run" order="2" type="WINDOWED" visible="true" weight="0.26222223" />
+      <window_info active="true" anchor="bottom" x="1104" y="30" width="432" height="833" id="Run" order="2" type="WINDOWED" visible="true" weight="0.26222223" />
       <window_info anchor="bottom" x="1104" y="30" width="432" height="833" id="Debug" order="3" type="WINDOWED" weight="0.6180556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -528,7 +585,8 @@
     <MESSAGE value="signup page routing issues" />
     <MESSAGE value="fixed signup routing problems" />
     <MESSAGE value="merged reece's react into master&#10;added some fields to the descriptions for more granularity" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged reece's react into master&#10;added some fields to the descriptions for more granularity" />
+    <MESSAGE value="merge broke things" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge broke things" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -560,13 +618,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/root/create-account.html" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/root/dashboard/dashboard.html" />
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -607,13 +658,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/notes" />
-    <entry file="file://$PROJECT_DIR$/root/javascript/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -624,24 +668,10 @@
     <entry file="file://$PROJECT_DIR$/root/css-sheets/columns.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/css-sheets/cosmetic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-982">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/root/css-sheets/portal-cosmetic.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/root/css-sheets/login-cosmetic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -673,13 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/root/javascript/tableManipulator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -699,19 +722,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/root/css-sheets/login-cosmetic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/root/javascript/InputParser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
-          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/css-sheets/cosmetic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/javascript/tableManipulator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="33" column="31" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/root/javascript/graph.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/root/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="528" selection-start-line="528" selection-end-line="528" />
+        <state relative-caret-position="260">
+          <caret line="133" column="62" selection-start-line="133" selection-start-column="62" selection-end-line="133" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#0;n#body#2;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
