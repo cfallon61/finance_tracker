@@ -141,10 +141,7 @@ function insert_to_db(date, desc, amount, type, idCell)
         json = JSON.parse(request.responseText);
         idCell.innerHTML = json.insertId;
       }
-      else
-      {
-        alert(request.responseText);
-      }
+      else alert(request.responseText);
     }
   };
 
