@@ -17,13 +17,11 @@ function insertTableRow() {
     var amountCell = row.insertCell(2);
     var typeCell = row.insertCell(3);
     var specificCell = row.insertCell(4);
-    // var descriptionCell = row.insertCell(5);
     var removeCell = row.insertCell(5);
 
     var amount = document.getElementById("amountField").value;
     var type = document.getElementById("typeDropdown").value;
 
-    nameCell.innerHTML = document.getElementById("nameField").value;
     dateCell.innerHTML = document.getElementById("dateField").value;
 
     if (type === "Credit") {
