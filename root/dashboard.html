@@ -40,15 +40,15 @@
 
             <div class="field3">
                 <label for="amountField">Amount:</label>
-                <input type="number" name="Amount" id="amountField" step='0.01' value='0.00' placeholder='0.00' min='0.00'>
+                <input type="number" name="Amount" id="amountField" step='0.01' value='0.00' placeholder='0.00' min="0">
             </div>
 
             <div class="field4">
                 <label for="typeDropdown">Type:</label>
                 <select name="type" id="typeDropdown" onchange="changeDropdown(this.value)">
                     <option value="" disabled selected>Select</option>
-                    <option value="Debit">Debit</option>
-                    <option value="Credit">Credit</option>
+                    <option value="Deposit">Deposit</option>
+                    <option value="Withdraw">Withdraw</option>
                 </select>
             </div>
 
