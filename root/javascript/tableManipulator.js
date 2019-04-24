@@ -1,7 +1,5 @@
 function insertTableRow() {
 
-    console.log(2);
-
     if (!checkValidInput()) {
         return;
     }
@@ -18,14 +16,12 @@ function insertTableRow() {
     var dateCell = row.insertCell(1);
     var amountCell = row.insertCell(2);
     var typeCell = row.insertCell(3);
-    var descCell = row.insertCell(4);
-    var removeCell = row.insertCell(6);
+    var specificCell = row.insertCell(4);
+    var removeCell = row.insertCell(5);
 
     var amount = document.getElementById("amountField").value;
     var type = document.getElementById("typeDropdown").value;
-    
-    // TODO change this so it gets it from the DB
-    idCell.innerHTML = document.getElementById("idField").value;
+
     dateCell.innerHTML = document.getElementById("dateField").value;
 
     if (type === "Withdrawal") {
@@ -34,12 +30,13 @@ function insertTableRow() {
 
     amountCell.innerHTML = "$" + amount;
     typeCell.innerHTML = type;
-    descCell.innerHTML = document.getElementById("descDropdown").value;
+    specificCell.innerHTML = document.getElementById("specificDropdown").value;
     removeCell.innerHTML = "<button type=\"button\" onclick=\"deleteTableRow(this)\" class=\'removeButton\'>Delete</button>";
 
     updateTotal(table, amount);
 
     updateData();
+    insert_to_db(dateCell.innerText, specificCell.innerText, amountCell.innerText, typeCell.innerText, idCell);
 }
 
 function parse_to_table(data)
@@ -92,7 +89,8 @@ function dump_user_data() {
             {
                 // send to table parser
                 json = JSON.parse(request.responseText);
-                alert(request.responseText);
+                alert(json);
+                // alert(json.length);
             }
             else alert(request.responseText);
         }
@@ -101,6 +99,43 @@ function dump_user_data() {
     console.log(request);
     console.log("data dump");
     // do stuff with json
+}
+
+function insert_to_db(date, desc, amount, type, idCell)
+{
+  data = {
+    TRANS_DATE: date,
+    AMOUNT: getNumberFromDollarStr(amount),
+    TRANS_DESCRIPTION: desc,
+    TRANS_TYPE: type
+  };
+
+  let request = new XMLHttpRequest();
+  const params = "?init_load=false&insert=true";
+  const url = "/data" + params;
+
+  request.open('POST', url, true);
+  request.setRequestHeader("Content-type", 'application/json;charset=UTF-8');
+
+  request.onreadystatechange = () =>
+  {
+    if (request.readyState === XMLHttpRequest.DONE)
+    {
+      if (request.status === 202)
+      {
+        // send to table parser
+        alert(request.responseText);
+        const json = JSON.parse(request.responseText);
+        // idCell.innerHTML = json.TRANS_ID;
+        alert(json);
+      }
+      else alert(request.responseText);
+    }
+  };
+
+  request.send(JSON.stringify(data));
+  console.log(request);
+  console.log("insert");
 }
 
 // allows a user to delete an entry from the DB
@@ -143,17 +178,18 @@ function deleteTableRow(x) {
     table = document.getElementById(table);
 
     var data;
+    var trans_id;
 
     if (x) {
         var cells = x.getElementsByTagName("td");
 
         data = cells[2].innerHTML;
-
+        trans_id = parseInt(cells[0].innerText);
         data = data.substr(1);
     }
 
     rowIndex.parentNode.removeChild(rowIndex);
-    delete_from_db(rowIndex);
+    delete_from_db(trans_id);
 
     data = "-" + data;
     updateTotal(table, data);

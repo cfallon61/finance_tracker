@@ -1,7 +1,7 @@
 function checkInNumberRange(input) {
 
     var number = parseInt(input);
-    
+
     return !(number > 32 || number < 0);
 }
 
@@ -80,8 +80,8 @@ function getMonthFromDate() {
 }
 
 var specificsByTypes = {
-    Debit: ["Income", "Loan"],
-    Credit: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation"]
+    Deposit: ["Income", "Loan", "Gift"],
+    Payment: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation", "Food", "Subscriptions", "Other"]
 };
 
 function changeDropdown(value) {
@@ -96,24 +96,13 @@ function changeDropdown(value) {
 }
 
 function checkValidInput() {
-  var input = document.getElementById("nameField");
-
-  if (input.value === "") {
-      return false;
-  }
-
-  input = document.getElementById("amountField");
+  var input = document.getElementById("amountField");
   if (input.value === "") {
       return false;
   }
 
   input = document.getElementById("specificDropdown");
   if (input.value === "Select"){
-      return false;
-  }
-
-  input = document.getElementById("desc");
-  if (input.value === "Description of transaction.") {
       return false;
   }
 

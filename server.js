@@ -101,11 +101,10 @@ app.post('/login', is_logged_in, (request, response) =>
         response.status(401).send("Error: Invalid username or password.");
         return;
       }
-      if (bcrypt.compareSync(password, res[0].PASSHASH))
+      if (!bcrypt.compareSync(toString(password), toString(res[0].PASSHASH)))
       {
         console.log("Password does not match");
         response.status(401).send("Error: Invalid username or password.");
-
       }
       else
       {
@@ -202,7 +201,7 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
     .catch((err) =>
     {
       console.log("Code: ", err.code, "SQL: ", err.sql);
-      response.status(501).send("Error", "The server encountered an error.");
+      response.status(501).send("Error: The server encountered an error.");
     });
 });
 
@@ -226,12 +225,14 @@ app.post("/data", not_logged_in, (request, response) =>
   else if (init === 'false' && insert === 'true')
   {
     const values = request.body;
+    console.log(request.body);
     const table_name = mysql.escapeId(uid, true);
     query_string = "INSERT INTO " + table_name +
-      "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?" +
-      "SELECT TRANS_ID FROM " + table_name + " ORDER BY TRANS_ID DESC LIMIT 1";
+      " SET TRANS_DATE=?, AMOUNT=?, TRANS_TYPE=?, TRANS_DESCRIPTION=?; " +
+      "SELECT TRANS_ID FROM " + table_name + " ORDER BY TRANS_ID DESC" +
+      " LIMIT 1";
 
-    options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
+    options = [values.TRANS_DATE, parseFloat(values.AMOUNT), values.TRANS_TYPE, values.TRANS_DESCRIPTION];
   }
   else
   {
@@ -249,8 +250,9 @@ app.post("/data", not_logged_in, (request, response) =>
     }
     else
     {
-      console.log(res);
-      response.status(202).json(res);
+      console.log("\n\n", {data: res});
+      // response.setHeader("Content-type", 'application/json;charset=UTF-8');
+      response.status(202).json({data: res});
     }
   });
 });
