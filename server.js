@@ -106,7 +106,6 @@ app.post('/login', is_logged_in, (request, response) =>
       bcrypt.compare(password, res[0].PASSHASH, (err, res)=>
       {
       if (err) console.log(err);
-
       // password matches
       if (res === false)
       {
@@ -149,7 +148,6 @@ app.get("/signup", is_logged_in, (req, res) =>
 app.post('/signup', is_logged_in, (request, response) =>
 {
   console.log("\nPOST /signup ");
-  console.log(request.headers);
 
   var email = request.headers.email;
   var password = request.headers.password;
@@ -157,25 +155,21 @@ app.post('/signup', is_logged_in, (request, response) =>
 
   // if any fields are empty or the email is not valid return an error
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email === ""
-    || password === ""
-    || name === ""
-    || !re.test(email))
+  if (email === "" || password === "" || name === "" || !re.test(email))
   {
     console.log("invalid password, email, or name");
-    response.status(400).send("Error: Invalid Email, Name, or Password");
+    response.status(401).send("Error: Invalid Email, Name, or Password");
     return;
   }
 
-  // hash password
+  // hash password and verify user
   bcrypt.hash(password, 10, (err, hash) =>
   {
-    if (err) console.log(err);
     const data = [email, name, hash];
     check_user_in_users(data)
       .then(create_user_table)
       .then(insert_to_users_table)
-      .then(() =>
+      .then((res) =>
       {
         request.session.uid = email;
         const url = `/dashboard/${request.session.uid}`;
@@ -304,6 +298,7 @@ function check_user_in_users(data)
   const email = data[0];
   return new Promise((resolve, reject) =>
   {
+    console.log("checking if user already exists");
     db.query("SELECT * FROM ?? WHERE EMAIL=?", [init.db.user_table, email], (err, res) =>
     {
       if (err) reject([err.code, err.sql]);
@@ -320,6 +315,7 @@ function check_user_in_users(data)
 function create_user_table(data)
 {
   const email = data[0];
+  console.log("creating user table");
   return new Promise((resolve, reject) =>
   {
     var query = "CREATE TABLE " + mysql.escapeId(email, true) + " LIKE template";
@@ -346,6 +342,7 @@ function insert_to_users_table(data)
   const name = data[1];
   const hash = data[2];
 
+  console.log("inserting user to users table");
   return new Promise((resolve, reject) =>
   {
     var data = {USERNAME: name, PASSHASH: hash, EMAIL: email};

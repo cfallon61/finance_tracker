@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<h1>
-    <link rel="stylesheet" type="text/css" href="css-sheets/signup-cosmetic.css">
-    <script src="javascript/routing.js"></script>
+<head>
+  <link rel="stylesheet" type="text/css" href="/css-sheets/signup-cosmetic.css">
+  <script src="/javascript/routing.js"></script>
+  <title>Sign up</title>
+</head>
 
-    Sign up
-</h1>
+<body>
 <div class="signup">
-    <h1>Create an Account</h1>
+  <h1>Create an Account</h1>
+  <form method="get" action="#">
+    <p>Name</p>
+    <input type="text" name="" placeholder="Name" id="name">
+    <p>Email</p>
+    <input type="email" name="" placeholder="Enter Email" id="userEmail">
+    <p>Password</p>
+    <input type="password" name="" placeholder="Enter Password"
+           id="userPassword">
+    <p>Confirm Password</p>
+    <input type="password" name="" placeholder="Re-enter Password"
+           id="confirmPassword">
+    <input type="submit" name="" value="Create Account" onclick="onSubmitSignup()">
+    <p id="loginFailed"></p>
 
-    <form>
-        <p>Name</p>
-        <input type="text" name="" placeholder="Name" id="name">
-
-        <p>Email</p>
-        <input type="email" name="" placeholder="Enter Email" id="userEmail">
-        <p>Password</p>
-        <input type="password" name="" placeholder="Enter Password" id="userPassword">
-        <p>Confirm Password</p>
-        <input type="password" name="" placeholder="Re-enter Password" id="confirmPassword">
-        <input type="submit" name="" value="Create Account" onclick="onSubmitSignup()">
-
-        <p id="loginFailed"></p>
-
-        <a href="/login">Login</a>
-    </form>
-
+    <a href="/login">Login</a>
+  </form>
 </div>
+</body>

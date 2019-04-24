@@ -209,9 +209,7 @@ function deleteTableRow(x)
 
 function updateTotal(table, amount)
 {
-
   var rowAmount = table.rows.length - 1;
-
   var oldTotalStr = table.rows[rowAmount].cells[1].innerHTML;
 
   if (oldTotalStr === "")
@@ -221,10 +219,7 @@ function updateTotal(table, amount)
   }
 
   var oldTotalNumberStr = oldTotalStr.substr(1);
-
   var oldNumber = Number(oldTotalNumberStr);
-
   var newNumber = oldNumber + Number(amount).toFixed(2);
-
   table.rows[rowAmount].cells[1].innerHTML = "$" + newNumber;
 }

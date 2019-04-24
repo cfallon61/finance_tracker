@@ -17,7 +17,7 @@ function onSubmitLogin()
     {
       if (request.status < 400)
       {
-        window.location.href = request.responseText;
+        window.location.replace(request.responseText);
       }
       else alert(request.responseText);
     }
@@ -65,11 +65,11 @@ function onSubmitSignup()
     {
       if (request.readyState === XMLHttpRequest.DONE)
       {
-        if (request.status < 400)
+        if (request.status === 202)
         {
-          window.location.href = request.responseText;
+          window.location.replace(request.responseText);
         }
-        else alert(request.responseText);
+        else alert(request.response);
       }
     };
     request.send();
