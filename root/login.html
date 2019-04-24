@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<head>
-  <link rel="stylesheet" type="text/css" href="/css-sheets/login-cosmetic.css">
-  <script src="/javascript/routing.js"></script>
-  <title>Login</title>
-</head>
-<body>
-<div class="loginBox">
-  <h1>Login Here</h1>
-  <form method="get" action="#">
-    <p>Email</p>
-    <input type="email" name="" placeholder="Enter Email" id="userEmail">
-    <p>Password</p>
-    <input type="password" name="" placeholder="Enter Password"
-           id="userPassword">
-    <input type="submit" name="" value="Login" onclick="onSubmitLogin()">
-    <p id="loginFailed"></p>
-    <a href="/signup">Create an account.</a>
-  </form>
-</div>
-</body>
+    <head>
+    <link rel="stylesheet" type="text/css" href="/css-sheets/login-cosmetic.css">
+    <script src="/javascript/routing.js"></script>
+    <title>Login</title>
+    </head>
+    <body>
+        <div class="loginBox">
+            <h1>Login Here</h1>
+            <form>
+                <p>Email</p>
+                <input type="email" name="" placeholder="Enter Email" id="userEmail">
+                <p>Password</p>
+                <input type="password" name="" placeholder="Enter Password" id="userPassword">
+                <input type="submit" name="" value="Login" onclick="{onSubmitLogin(); return false}">
+                <p id="loginFailed"></p>
+                <a href="/signup">Create an account.</a>
+            </form>
+
+        </div>
+    </body>
 

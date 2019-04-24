@@ -8,7 +8,7 @@
 <body>
 <div class="signup">
   <h1>Create an Account</h1>
-  <form method="get" action="#">
+  <form method="get">
     <p>Name</p>
     <input type="text" name="" placeholder="Name" id="name">
     <p>Email</p>
@@ -19,7 +19,7 @@
     <p>Confirm Password</p>
     <input type="password" name="" placeholder="Re-enter Password"
            id="confirmPassword">
-    <input type="submit" name="" value="Create Account" onclick="onSubmitSignup()">
+    <input type="submit" name="" value="Create Account" onclick="{onSubmitSignup(); return false}">
     <p id="loginFailed"></p>
 
     <a href="/login">Login</a>
