@@ -87,30 +87,38 @@ function parse_to_table(data)
 // function called when the page is loaded
 function dump_user_data()
 {
-  var json;
-  let request = new XMLHttpRequest();
-  const params = "?init_load=true&insert=false";
-  const url = "/data" + params;
-  request.open("POST", url, true);
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  // POST
-
-  request.onreadystatechange = () =>
+  return new Promise((resolve, reject) =>
   {
-    if (request.readyState === XMLHttpRequest.DONE)
+    var json;
+    let request = new XMLHttpRequest();
+    const params = "?init_load=true&insert=false";
+    const url = "/data" + params;
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // POST
+
+    request.onreadystatechange = () =>
     {
-      if (request.status < 400 && request.status >= 200)
+      if (request.readyState === XMLHttpRequest.DONE)
       {
-        json = JSON.parse(request.responseText);
-        parse_to_table(json);
+        if (request.status < 400 && request.status >= 200)
+        {
+          json = JSON.parse(request.responseText);
+          parse_to_table(json);
+          resolve(json);
+        }
+        else
+        {
+          alert(request.responseText);
+          reject(request.responseText);
+        }
       }
-      else alert(request.responseText);
-    }
-  };
-  request.send(params);
-  console.log(request);
-  console.log("data dump");
-  // do stuff with json
+    };
+    request.send(params);
+    console.log(request);
+    console.log("data dump");
+    // do stuff with json
+  });
 }
 
 function insert_to_db(date, desc, amount, type, idCell)

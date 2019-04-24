@@ -98,8 +98,19 @@
     </style>
 </head>
 
-<body onload="{dump_user_data();}"></body>
-<body onload="createChart()" , style="background: url(../images/png/BG.png) no-repeat; background-size: 100% 100%;">
+<body onload="
+{
+    dump_user_data()
+    .then(() =>
+    {
+        createChart();
+        updateData();
+    })
+    .catch((err) => console.log(err));
+    return true;
+}"></body>
+
+<body style="background: url(../images/png/BG.png) no-repeat; background-size: 100% 100%;">
 
 <nav>
     <a id="logo" href="#">Finance Tracker</a>

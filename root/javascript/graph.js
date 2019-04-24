@@ -53,7 +53,7 @@ function createWithdrawPieChart() {
         var chartID = "pieChart" + months[i];
         console.log(chartID);
         var chart = document.getElementById(chartID);
-        if(window.bar != undefined) window.bar.destroy();
+        if(window.bar !== undefined) window.bar.destroy();
         let myChart = new Chart(chart, {
             type: 'doughnut',
             data:  {
@@ -75,34 +75,41 @@ function updateWithdrawData() {
     var i;
     var j;
     pieDataW = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+    // alert("creating withdraw chart");
     for (i = 0; i < 12; i++){
         table = document.getElementById(months[i]);
+
         if (table == null) return;
-        for (j = 1; j < table.rows.length-1; j++) {
+
+        for (j = 1; j < table.rows.length-1; j++)
+        {
             console.log(j);
             let typeCell = table.rows[j].cells[3].innerHTML;
             console.log(typeCell);
             if (typeCell === "Deposit") continue;
             typeCell = table.rows[j].cells[4].innerHTML;
             let amount = getNumberFromDollarStr(table.rows[j].cells[2].innerText);
+
+            amount = Math.abs(amount);
+
             console.log(typeCell);
-            if(typeCell == "Home"){
+            if(typeCell === "Home"){
                 console.log("Adding Home Expense");
                 pieDataW[i][0] += amount;
             }
-            else if(typeCell == "Utilities"){
+            else if(typeCell === "Utilities"){
                 console.log("Adding Utilities Expense");
                 pieDataW[i][1] += amount;
             }
-            else if(typeCell == "Upkeep") {
+            else if(typeCell === "Upkeep") {
                 console.log("Adding Upkeep Expense");
                 pieDataW[i][2] += amount;
             }
-            else if(typeCell == "Debt Payments") {
+            else if(typeCell === "Debt Payments") {
                 console.log("Adding Debt Repayment Expense");
                 pieDataW[i][3] += amount;
             }
-            else if(typeCell == "Recreation") {
+            else if(typeCell === "Recreation") {
                 console.log("Adding Recreation Expense");
                 pieDataW[i][4] += amount;
             }
@@ -121,7 +128,7 @@ function createDepositPieChart() {
         var chartID = "depositPieChart" + months[i];
         console.log(chartID);
         var chart = document.getElementById(chartID);
-        if(window.bar != undefined) window.bar.destroy();
+        if(window.bar !== undefined) window.bar.destroy();
         let myChart = new Chart(chart, {
             type: 'doughnut',
             data:  {
@@ -153,12 +160,13 @@ function updateDepositData() {
             if (typeCell === "Withdraw") continue;
             typeCell = table.rows[j].cells[4].innerHTML;
             let amount = getNumberFromDollarStr(table.rows[j].cells[2].innerText);
+            amount = Math.abs(amount);
             console.log(typeCell);
-            if(typeCell == "Loan"){
+            if(typeCell === "Loan"){
                 console.log("Adding Home Expense");
                 pieDataD[i][0] += amount;
             }
-            else if(typeCell == "Income"){
+            else if(typeCell === "Income"){
                 console.log("Adding Utilities Expense");
                 pieDataD[i][1] += amount;
             }
