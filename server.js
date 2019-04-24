@@ -101,6 +101,7 @@ app.post('/login', is_logged_in, (request, response) =>
         response.status(401).send("Error: Invalid username or password.");
         return;
       }
+      
       if (!bcrypt.compareSync(toString(password), toString(res[0].PASSHASH)))
       {
         console.log("Password does not match");
