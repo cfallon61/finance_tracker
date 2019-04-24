@@ -38,6 +38,34 @@ function insertTableRow() {
     updateData();
 }
 
+function delete_from_db(trans_id)
+{
+    let request = new XMLHttpRequest();
+    const params = "?trans_id=" + toString(trans_id);
+    console.log(trans_id);
+    const url = "/data" + params;
+    request.open("DELETE", url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // POST
+
+    request.onreadystatechange = () =>
+    {
+        if (request.readyState === XMLHttpRequest.DONE)
+        {
+            if (request.status === 202)
+            {
+                // send to table parser
+                console.log(request.responseText);
+            }
+            else alert(request.responseText);
+        }
+    };
+    request.send(params);
+    console.log(request);
+    console.log("delete", trans_id);
+    // do stuff with json
+}
+
 function deleteTableRow(x) {
     var rowIndex = x.parentNode.parentNode;
 
@@ -59,11 +87,10 @@ function deleteTableRow(x) {
     }
 
     rowIndex.parentNode.removeChild(rowIndex);
+    delete_from_db(rowIndex);
 
     data = "-" + data;
-
     updateTotal(table, data);
-
     updateData();
 }
 
@@ -73,7 +100,7 @@ function updateTotal(table, amount) {
 
     var oldTotalStr = table.rows[rowAmount].cells[1].innerHTML;
 
-    if (oldTotalStr === ""){
+    if (oldTotalStr === "") {
         table.rows[rowAmount].cells[1].innerHTML = "$" + amount;
         return;
     }
