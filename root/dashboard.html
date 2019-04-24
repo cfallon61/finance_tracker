@@ -1,383 +1,618 @@
 <!DOCTYPE html>
 <!--suppress ALL -->
 <html>
-    <head>
+<head>
 
-        <title>Finance Tracker</title>
+    <title>Finance Tracker</title>
 
-        <link rel="shortcut icon" type="image/png" href="/images/png/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="images/png/favicon.png">
 
-        <link rel="stylesheet" type="text/css" href="/css-sheets/columns.css">
-        <link rel="stylesheet" type="text/css" href="/css-sheets/table.css">
-        <link rel="stylesheet" type="text/css" href="/css-sheets/cosmetic.css">
+    <link rel="stylesheet" type="text/css" href="css-sheets/columns.css">
+    <link rel="stylesheet" type="text/css" href="css-sheets/table.css">
+    <link rel="stylesheet" type="text/css" href="css-sheets/cosmetic.css">
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-        <script src="/javascript/tableManipulator.js"></script>
-        <script src="/javascript/InputParser.js"></script>
-        <script src="/javascript/graph.js"></script>
+    <script src="javascript/tableManipulator.js"></script>
+    <script src="javascript/InputParser.js"></script>
+    <script src="javascript/graph.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        img.bg {
+            /* Set rules to fill background */
+            min-height: 100%;
+            min-width: 1024px;
 
-    <body onload="dump_user_data()"></body>
-    <body onload="createChart()">
+            /* Set up proportionate scaling */
+            width: 100%;
+            height: auto;
 
-        <nav>
-            <a id="logo" href="#">Finance Tracker</a>
-            <a id="signout" href="/signout">Sign Out</a>
-        </nav>
+            /* Set up positioning */
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        @media screen and (max-width: 1024px) { /* Specific to this particular image */
+            img.bg {
+                left: 50%;
+                margin-left: -512px;   /* 50% */
+            }
+        }
+        .accordion {
+            background-color: #ADA895;
+            color: #474338;
+            cursor: pointer;
+            padding: 6px;
+            width: 12%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            font-size: 24px;
+        }
+        .active, .accordion:hover {
+            background-color: #474338;
+            color: #ADA895;
+        }
+        .panel {
+        <!--padding: 0 0px;-->
+            padding-bottom: 25px;
+
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        table.transactionTable {
+            border: 6px solid #ADA895;
+            background-color: #ADA895;
+            width: 100%;
+            text-align: center;
+        }
+        table.transactionTable td, table.transactionTable th {
+            border: 1px solid #474338;
+            padding: 4px 4px;
+        }
+        table.transactionTable tbody td {
+            font-size: 13px;
+        }
+        table.transactionTable thead {
+            background: #474338;
+
+        }
+        table.transactionTable thead th {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ADA895;
+            text-align: left;
+            border-left: 2px solid #474338;
+        }
+        table.transactionTable thead th:first-child {
+            border-left: none;
+        }
+
+        table.transactionTable tfoot {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ADA895;
+            background: #474338;
+        }
+        table.transactionTable tfoot td {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body onload="createChart()", style="background: url(./images/png/BG.png) no-repeat; background-size: 100% 100%;">
+
+<!-- <img src="./images/png/BG.png" alt="background" class="bg" /> -->
+
+<nav>
+    <a id="logo" href="#">Finance Tracker</a>
+    <a id="signout" href="/signout">Sign Out</a>
+</nav>
 
 
 
-        <div class="input">
+<div class="input">
 
-            <h1>Input your information.</h1>
+    <h1>Input your information.</h1>
 
             <div class="field2">
                 <label for="dateField">Date:</label>
                 <input type="date" name="Date" id="dateField" value="2019-01-01" min="2019-01-01" max="2019-12-31">
             </div>
 
-            <div class="field3">
-                <label for="amountField">Amount:</label>
-                <input type="number" name="Amount" id="amountField" step='0.01' value='0.00' placeholder='0.00' min="0">
-            </div>
+    <div class="field3">
+        <label for="amountField">Amount:</label>
+        <input type="number" name="Amount" id="amountField" step='0.01' value='0.00' placeholder='0.00' min="0">
+    </div>
 
-            <div class="field4">
-                <label for="typeDropdown">Type:</label>
-                <select name="type" id="typeDropdown" onchange="changeDropdown(this.value)">
-                    <option value="" disabled selected>Select</option>
-                    <option value="Deposit">Deposit</option>
-                    <option value="Withdraw">Withdraw</option>
-                </select>
-            </div>
+    <div class="field4">
+        <label for="typeDropdown">Type:</label>
+        <select name="type" id="typeDropdown" onchange="changeDropdown(this.value)">
+            <option value="" disabled selected>Select</option>
+            <option value="Deposit">Deposit</option>
+            <option value="Withdraw">Withdraw</option>
+        </select>
+    </div>
 
-            <div class="field5">
+    <div class="field5">
 
-                <select name="specificType" id="specificDropdown"></select>
-            </div>
+        <select name="specificType" id="specificDropdown"></select>
+    </div>
 
-            <div class="confirm">
-                <button type="button" onclick="insertTableRow()">Insert</button>
-            </div>
+    <div class="confirm">
+        <button type="button" onclick="insertTableRow()">Insert</button>
+    </div>
 
+</div>
+
+
+
+<div class="TableBody">
+
+    <!-- January - June -->
+
+        <button class="accordion"> ◼ January</button>
+        <div class="panel">
+            <p>
+                <div id="subgroup">
+                    <table class = "transactionTable" id="JANUARY">
+                        <tr>
+                            <th class="name">Transaction ID</th>
+                            <th class="date">Date</th>
+                            <th class="amount">Amount</th>
+                            <th class="type">Type</th>
+                            <th class="specificType">Specific Type</th>
+                            <th class="remove">Remove</th>
+                        </tr>
+                        <tr>
+                            <td>Net Amount:</td>
+                            <td colspan="6">$0</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="Col1">
+                    <div class="chartClass">
+                        <canvas id="pieChartJANUARY" width="10" height="10"></canvas>
+                    </div>
+                    <br />
+                </div>
+                <div id="Col2">
+                    <div class="chartClass">
+                        <canvas id="depositPieChartJANUARY" width="10" height="10"></canvas>
+                    </div>
+                    <br />
+                </div>
+            </p>
         </div>
 
-        <div class="TableBody">
-
-            <!-- January - June -->
+        <button class="accordion"> ◼ February</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="FEBRUARY">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
             <div id="Col1">
-
-                <div id="subgroup">
-                    <table id="JANUARY">
-                        <caption>January</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
+                <div class="chartClass">
+                    <canvas id="pieChartFEBRUARY" width="10" height="10"></canvas>
                 </div>
-
-                <div id="subgroup">
-
-                    <table id="FEBRUARY">
-                        <caption>Feburary</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-                <div id="subgroup">
-
-                    <table id="MARCH">
-                        <caption>March</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="APRIL">
-                        <caption>April</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="MAY">
-                        <caption>May</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-                <div id="subgroup">
-
-                    <table id="JUNE">
-                        <caption>June</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
+                <br />
             </div>
-
-            <!-- July - December -->
             <div id="Col2">
-
-                <div id="subgroup">
-                    <table id="JULY">
-                        <caption>July</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-                    </table>
-
+                <div class="chartClass">
+                    <canvas id="depositPieChartFEBRUARY" width="10" height="10"></canvas>
                 </div>
-
-
-
-                <div id="subgroup">
-                    <table id="AUGUST">
-                        <caption>August</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="SEPTEMBER">
-                        <caption>September</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="OCTOBER">
-                        <caption>October</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-
-                    <table id="NOVEMBER">
-                        <caption>November</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
-
-                <div id="subgroup">
-                    <table id="DECEMBER">
-                        <caption>December</caption>
-                        <tr>
-                            <th class="name">Transaction ID</th>
-                            <th class="date">Date</th>
-                            <th class="amount">Amount</th>
-                            <th class="type">Type</th>
-                            <th class="specificType">Specific Type</th>
-
-                            <th class="remove">Remove</th>
-                        </tr>
-
-                        <tr>
-                            <td>Net Amount:</td>
-                            <td colspan="6">$0</td>
-                        </tr>
-
-
-                    </table>
-
-                </div>
-
-
+                <br />
             </div>
-
+            </p>
         </div>
 
-        <div class="chartClass">
-            <canvas id="lineChart" width="10" height="10"></canvas>
+        <button class="accordion"> ◼ March</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="MARCH">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartMARCH" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartMARCH" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+        <button class="accordion"> ◼ April</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="APRIL">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartAPRIL" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartAPRIL" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+        <button class="accordion"> ◼ May</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="MAY">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartMAY" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartMAY" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+
+        <button class="accordion"> ◼ June</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="JUNE">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartJUNE" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartJUNE" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+    <!-- July - December -->
+
+        <button class="accordion"> ◼ July</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="JULY">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartJULY" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartJULY" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
         </div>
 
 
 
-    </body>
+        <button class="accordion"> ◼ August</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="AUGUST">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartAUGUST" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartAUGUST" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+
+
+        <button class="accordion"> ◼ September</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="SEPTEMBER">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartSEPTEMBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartSEPTEMBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+
+
+        <button class="accordion"> ◼ October</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="OCTOBER">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartOCTOBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartOCTOBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+        <button class="accordion"> ◼ November</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="NOVEMBER">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartNOVEMBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartNOVEMBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            </p>
+        </div>
+
+        <button class="accordion"> ◼ December</button>
+        <div class="panel">
+            <p>
+            <div id="subgroup">
+                <table class = "transactionTable" id="DECEMBER">
+                    <tr>
+                        <th class="name">Transaction ID</th>
+                        <th class="date">Date</th>
+                        <th class="amount">Amount</th>
+                        <th class="type">Type</th>
+                        <th class="specificType">Specific Type</th>
+                        <th class="remove">Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Net Amount:</td>
+                        <td colspan="6">$0</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Col1">
+                <div class="chartClass">
+                    <canvas id="pieChartDECEMBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+            <div id="Col2">
+                <div class="chartClass">
+                    <canvas id="depositPieChartDECEMBER" width="10" height="10"></canvas>
+                </div>
+                <br />
+            </div>
+        </div>
+
+</div>
+<br />
+<br />
+<div class="chartClass">
+    <canvas id="lineChart" width="10" height="10"></canvas>
+</div>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+<script>
+    var acc = document.getElementsByClassName("accordionAlt");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+
+
+</body>
 
 </html>
