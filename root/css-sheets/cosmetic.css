@@ -22,7 +22,7 @@ nav a{
     display: block;
     float: left;
 
-    font-family: Consolas, s, sans-serif;
+    font-family: monospace;
     font-size: 9px;
     color: white;
 
