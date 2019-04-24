@@ -6,3 +6,5 @@
 !root
 !node_modules
 !node_modules/*
+!server.cert
+!server.key
