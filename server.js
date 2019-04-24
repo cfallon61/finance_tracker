@@ -101,21 +101,25 @@ app.post('/login', is_logged_in, (request, response) =>
         response.status(401).send("Error: Invalid username or password.");
         return;
       }
-      if (bcrypt.compareSync(password, res[0].PASSHASH))
+
+      // compare stored hash
+      bcrypt.compare(password, res[0].PASSHASH, (err, res)=>
+      {
+      if (err) console.log(err);
+
+      // password matches
+      if (res === false)
       {
         console.log("Password does not match");
         response.status(401).send("Error: Invalid username or password.");
-
       }
       else
       {
         console.log("\nredirecting to user dashboard");
         request.session.uid = email;
-        console.log("userid:", request.session.uid);
-        const url = `/dashboard/${request.session.uid}`;
-        console.log(url);
-        response.status(202).send(url);
+        response.status(202).send(`/dashboard/${request.session.uid}`);
       }
+      });
     }
     else
     {
@@ -157,19 +161,29 @@ app.post('/signup', is_logged_in, (request, response) =>
     response.status(400).send("Error: Invalid Email, Name, or Password");
     return;
   }
-  var passhash = bcrypt.hashSync(password, 10);
 
-  const data = [email, name, passhash];
-  check_user_in_users(data)
-    .then(create_user_table)
-    .then(insert_to_users_table)
-    .then(() =>
+  bcrypt.genSalt(10, (err, salt) =>
+  {
+    if (err) console.log(err);
+
+    bcrypt.hash(password, salt, (err, hash) =>
     {
-      request.session.uid = email;
-      const url = `/dashboard/${request.session.uid}`;
-      response.status(202).send(url);
-    })
-    .catch(err => response.status(500).send({"Error":err}));
+      if (err) console.log(err);
+      const data = [email, name, hash, salt];
+      check_user_in_users(data)
+        .then(create_user_table)
+        .then(insert_to_users_table)
+        .then(() =>
+        {
+          request.session.uid = email;
+          const url = `/dashboard/${request.session.uid}`;
+          response.status(202).send(url);
+        })
+        .catch(err => response.status(500).send({"Error":err}));
+    });
+  });
+
+
 });
 
 // redirect the user to their dashboard. totally unnecessary
@@ -202,7 +216,7 @@ app.get('/dashboard/:uid', not_logged_in, (request, response) =>
     .catch((err) =>
     {
       console.log("Code: ", err.code, "SQL: ", err.sql);
-      response.status(501).send("Error", "The server encountered an error.");
+      response.status(501).send("Error: The server encountered an error.");
     });
 });
 
@@ -226,12 +240,12 @@ app.post("/data", not_logged_in, (request, response) =>
   else if (init === 'false' && insert === 'true')
   {
     const values = request.body;
+    console.log(request.body);
     const table_name = mysql.escapeId(uid, true);
     query_string = "INSERT INTO " + table_name +
-      "SET TRANS_DATE=? AMOUNT=? TRANS_TYPE=? TRANS_DESCRIPTION=?" +
-      "SELECT TRANS_ID FROM " + table_name + " ORDER BY TRANS_ID DESC LIMIT 1";
+      " SET TRANS_DATE=?, AMOUNT=?, TRANS_TYPE=?, TRANS_DESCRIPTION=?";
 
-    options = [values.TRANS_DATE, values.AMOUNT, values.TRANS_TYPE, values.TRANS_DESCRIPTION];
+    options = [values.TRANS_DATE, parseFloat(values.AMOUNT), values.TRANS_TYPE, values.TRANS_DESCRIPTION];
   }
   else
   {
@@ -249,7 +263,8 @@ app.post("/data", not_logged_in, (request, response) =>
     }
     else
     {
-      console.log(res);
+      console.log("\n\n", res);
+      // response.setHeader("Content-type", 'application/json;charset=UTF-8');
       response.status(202).json(res);
     }
   });
@@ -335,10 +350,11 @@ function insert_to_users_table(data)
   const email = data[0];
   const name = data[1];
   const hash = data[2];
+  const salt = data[3];
 
   return new Promise((resolve, reject) =>
   {
-    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email};
+    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email, PASS_SALT: salt};
     db.query("INSERT INTO ?? SET ?", [init.db.user_table, data], (err, res) =>
     {
       if (err) reject([err.code, err.sql]);

@@ -1,7 +1,7 @@
 function checkInNumberRange(input) {
 
     var number = parseInt(input);
-    
+
     return !(number > 32 || number < 0);
 }
 
@@ -39,49 +39,30 @@ function convertMonthToNumber(month) {
     }
 }
 
-function convertNumbertoMonth(number) {
-
-    switch (number) {
-        case "01":
-            return "JANUARY";
-        case "02":
-            return "FEBRUARY";
-        case "03":
-            return "MARCH";
-        case "04":
-            return "APRIL";
-        case "05":
-            return "MAY";
-        case "06":
-            return "JUNE";
-        case "07":
-            return "JULY";
-        case "08":
-            return "AUGUST";
-        case "09":
-            return "SEPTEMBER";
-        case "10":
-            return "OCTOBER";
-        case "11":
-            return "NOVEMBER";
-        case "12":
-            return "DECEMBER";
-        default:
-            return "JANUARY";
-    }
-}
+const monthmap =
+  {
+      "01": "JANUARY",
+      "02": "FEBRUARY",
+      "03": "MARCH",
+      "04": "APRIL",
+      "05": "MAY",
+      "06": "JUNE",
+      "07": "JULY",
+      "08": "AUGUST",
+      "09": "SEPTEMBER",
+      "10": "OCTOBER",
+      "11": "NOVEMBER",
+      "12": "DECEMBER"
+  };
 
 function getMonthFromDate() {
-
     var date = document.getElementById("dateField").value.split("-");
-
     return date[1];
-
 }
 
-var specificsByTypes = {
-    Debit: ["Income", "Loan"],
-    Credit: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation"]
+const specificsByTypes = {
+    Deposit: ["Income", "Loan"],
+    Withdraw: ["Home", "Utilities", "Upkeep", "Debt Payments", "Recreation"]
 };
 
 function changeDropdown(value) {
@@ -96,24 +77,13 @@ function changeDropdown(value) {
 }
 
 function checkValidInput() {
-  var input = document.getElementById("nameField");
-
+  var input = document.getElementById("amountField");
   if (input.value === "") {
       return false;
   }
 
-  input = document.getElementById("amountField");
-  if (input.value === "") {
-      return false;
-  }
-
-  input = document.getElementById("specificDropdown");
-  if (input.value === "Select"){
-      return false;
-  }
-
-  input = document.getElementById("desc");
-  if (input.value === "Description of transaction.") {
+  input = document.getElementById("typeDropdown");
+  if (input.value === ""){
       return false;
   }
 

@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 
-    <head>
-        <link rel="stylesheet" type="text/css" href="css-sheets/portal-cosmetic.css">
+<head>
+    <link rel="stylesheet" type="text/css" href="css-sheets/portal-cosmetic.css">
+    <script src="javascript/routing.js"></script>
 
-        <title>Finance Tracker</title>
-    </head>
-    <body>
+    <title>Finance Tracker</title>
+</head>
+<body>
 
-        <div class="signup">
-            <h1>Login Here</h1>
+<div class="signup">
+    <h1>Login Here</h1>
 
-            <form>
+    <form>
+        <input type="submit" name="" value="Create Account" onclick="{window.location.href = '/signup'; return false;}">
+        <input type="submit" name="" value="Login" onclick="{window.location.href = '/login'; return false;}">
+    </form>
 
-                <input type="submit" name="" value="Signin" onclick="onSubmit()">
-
-                <input type="submit" name="" value="Login" onclick="onSubmit()">
-
-            </form>
-
-        </div>
-    </body>
+</div>
+</body>

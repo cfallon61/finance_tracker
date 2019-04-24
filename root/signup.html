@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <h1>
     <link rel="stylesheet" type="text/css" href="css-sheets/signup-cosmetic.css">
+    <script src="javascript/routing.js"></script>
 
     Sign up
 </h1>
@@ -17,7 +18,7 @@
         <input type="password" name="" placeholder="Enter Password" id="userPassword">
         <p>Confirm Password</p>
         <input type="password" name="" placeholder="Re-enter Password" id="confirmPassword">
-        <input type="submit" name="" value="Create Account" onclick="onSubmit()">
+        <input type="submit" name="" value="Create Account" onclick="onSubmitSignup()">
 
         <p id="loginFailed"></p>
 
@@ -25,54 +26,3 @@
     </form>
 
 </div>
-
-<script>
-  function validate_fields(pass, email, name, confirm)
-  {
-    if (name === "" || pass === "" || email === "" || confirm === "")
-    {
-      alert("Please fill all fields.");
-      return false
-    }
-    if (pass !== confirm)
-    {
-      alert("Passwords do not match.");
-      return false;
-    }
-
-    return true;
-  }
-
-  function onSubmit()
-  {
-    let pass = document.getElementById('userPassword').value;
-    let email = document.getElementById('userEmail').value;
-    let name = document.getElementById("name").value;
-    let confirm = document.getElementById("confirmPassword").value;
-
-    if (validate_fields(pass, email, name, confirm))
-    {
-      let request = new XMLHttpRequest();
-      request.open("POST", "/signup", true);
-      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      request.setRequestHeader("withCredentials", true);
-      request.setRequestHeader("email", email);
-      request.setRequestHeader("password", pass);
-      request.setRequestHeader("name", name);
-
-      request.onreadystatechange = () =>
-      {
-        if (request.readyState === XMLHttpRequest.DONE)
-        {
-          if (request.status < 400)
-          {
-            window.location.href = request.responseText;
-          }
-          else alert(request.responseText);
-        }
-      };
-      request.send();
-      console.log(request.responseText);
-    }
-  }
-</script>
