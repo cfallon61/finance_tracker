@@ -101,8 +101,12 @@ app.post('/login', is_logged_in, (request, response) =>
         response.status(401).send("Error: Invalid username or password.");
         return;
       }
-      
-      if (!bcrypt.compareSync(toString(password), toString(res[0].PASSHASH)))
+
+      bcrypt.compare(password, res[0].PASSHASH, (err, res)=>
+      {
+      if (err) console.log(err);
+
+      if (res === false)
       {
         console.log("Password does not match");
         response.status(401).send("Error: Invalid username or password.");
@@ -116,6 +120,7 @@ app.post('/login', is_logged_in, (request, response) =>
         console.log(url);
         response.status(202).send(url);
       }
+      });
     }
     else
     {
@@ -157,19 +162,29 @@ app.post('/signup', is_logged_in, (request, response) =>
     response.status(400).send("Error: Invalid Email, Name, or Password");
     return;
   }
-  var passhash = bcrypt.hashSync(password, 10);
 
-  const data = [email, name, passhash];
-  check_user_in_users(data)
-    .then(create_user_table)
-    .then(insert_to_users_table)
-    .then(() =>
+  bcrypt.genSalt(10, (err, salt) =>
+  {
+    if (err) console.log(err);
+
+    bcrypt.hash(password, salt, (err, hash) =>
     {
-      request.session.uid = email;
-      const url = `/dashboard/${request.session.uid}`;
-      response.status(202).send(url);
-    })
-    .catch(err => response.status(500).send({"Error":err}));
+      if (err) console.log(err);
+      const data = [email, name, hash, salt];
+      check_user_in_users(data)
+        .then(create_user_table)
+        .then(insert_to_users_table)
+        .then(() =>
+        {
+          request.session.uid = email;
+          const url = `/dashboard/${request.session.uid}`;
+          response.status(202).send(url);
+        })
+        .catch(err => response.status(500).send({"Error":err}));
+    });
+  });
+
+
 });
 
 // redirect the user to their dashboard. totally unnecessary
@@ -338,10 +353,11 @@ function insert_to_users_table(data)
   const email = data[0];
   const name = data[1];
   const hash = data[2];
+  const salt = data[3];
 
   return new Promise((resolve, reject) =>
   {
-    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email};
+    var data = {USERNAME: name, PASSHASH: hash, EMAIL: email, PASS_SALT: salt};
     db.query("INSERT INTO ?? SET ?", [init.db.user_table, data], (err, res) =>
     {
       if (err) reject([err.code, err.sql]);
