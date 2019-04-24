@@ -117,7 +117,7 @@ app.post('/login', is_logged_in, (request, response) =>
       {
         console.log("\nredirecting to user dashboard");
         request.session.uid = email;
-        response.status(202).send(`/dashboard/${request.session.uid}`;
+        response.status(202).send(`/dashboard/${request.session.uid}`);
       }
       });
     }
